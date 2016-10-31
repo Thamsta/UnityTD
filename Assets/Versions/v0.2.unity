@@ -1804,8 +1804,16 @@ MonoBehaviour:
   - {fileID: 1526024883}
   - {fileID: 845192139}
   - {fileID: 2115253628}
-  testEnemyPrefab: {fileID: 1000011041994082, guid: f11e29079fa2e3e4c8c2f154e0366442,
-    type: 2}
+  enemyPrefabs:
+  - {fileID: 1516673179739234, guid: 74018e36ac2609348bbe69ef2109fb26, type: 2}
+  - {fileID: 1000011041994082, guid: f11e29079fa2e3e4c8c2f154e0366442, type: 2}
+  waveSpawnInterval: 5
+  enemySpawnInterval: 1
+  enemySpawnCounter: 5
+  enemiesToSpawn: 0
+  lastEnemySpawnTime: 0
+  lastEnemyCounter: 0
+  lastWaveEndTime: 0
 --- !u!1001 &1421732296
 Prefab:
   m_ObjectHideFlags: 0
