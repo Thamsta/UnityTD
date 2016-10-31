@@ -64,7 +64,6 @@ public class ShootEnemies : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("test");
         if (other.gameObject.tag.Equals("Enemy"))
         {
             enemiesInRange.Add(other.gameObject);
