@@ -746,6 +746,11 @@ Prefab:
       propertyPath: healthLabel
       value: 
       objectReference: {fileID: 1034742460}
+    - target: {fileID: 114000014232199588, guid: d3cc3178a7cc9a1498a514208f7d1198,
+        type: 2}
+      propertyPath: messageLabel
+      value: 
+      objectReference: {fileID: 548844375}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3cc3178a7cc9a1498a514208f7d1198, type: 2}
   m_IsPrefabParent: 0

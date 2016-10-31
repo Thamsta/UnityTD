@@ -6,6 +6,7 @@ public class GameManagerBehavior : MonoBehaviour {
 
     public Text goldLabel;
     public Text healthLabel;
+    public Text messageLabel;
 
     private int gold;
     private int health;
@@ -37,5 +38,10 @@ public class GameManagerBehavior : MonoBehaviour {
     {
         Gold = 100000;
         Health = 5;
+    }
+
+    public void SetMessageLabelText(string newText)
+    {
+        messageLabel.GetComponent<Text>().text = newText;
     }
 }

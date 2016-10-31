@@ -22,5 +22,6 @@ public class SelectTower : MonoBehaviour
     public void buttonClicked(GameObject tower)
     {
         activeTower = tower;
+        GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText("");
     }
 }

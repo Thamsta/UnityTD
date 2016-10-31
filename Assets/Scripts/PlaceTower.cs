@@ -4,7 +4,6 @@ using System.Collections;
 
 public class PlaceTower : MonoBehaviour {
 
-    public Text _notifyText;
     private SelectTower _selectTower;
     private GameObject _tower;
     private GameManagerBehavior _gameManager;
@@ -17,24 +16,25 @@ public class PlaceTower : MonoBehaviour {
 
     void OnMouseUp()
     {
-        if (canPlaceTower())
+        if (CanPlaceTower())
         {
             _tower = (GameObject) Instantiate(_selectTower.activeTower, transform.position, Quaternion.identity);
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
         
-        else if(canUpgradeTower())
+        else if(CanUpgradeTower())
         {
             _tower.GetComponent<TowerData>().increaseLevel();
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
     }
 
-    private bool canPlaceTower()
+    private bool CanPlaceTower()
     {
         if (_selectTower.activeTower == null)
         {
-            _notifyText.GetComponent<Text>().text = "Select a tower first";
+            print("Test");
+            _gameManager.SetMessageLabelText("Select a tower first");
             return false;
         }
         else
@@ -44,7 +44,7 @@ public class PlaceTower : MonoBehaviour {
         }
     }
 
-    private bool canUpgradeTower()
+    private bool CanUpgradeTower()
     {
         if (_tower != null)
         {
