@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlaceTower : MonoBehaviour {
 
-    //public GameObject _towerPrefab;
+    public Text _notifyText;
     private SelectTower _selectTower;
     private GameObject _tower;
     private GameManagerBehavior _gameManager;
@@ -18,9 +19,16 @@ public class PlaceTower : MonoBehaviour {
     {
         if (canPlaceTower())
         {
-
+            print(_selectTower.activeTower);
+            if(_selectTower.activeTower == null)
+            {
+                _notifyText.GetComponent<Text>().text = "Select a tower first";
+            }
+            else
+            {
             _tower = (GameObject) Instantiate(_selectTower.activeTower, transform.position, Quaternion.identity);
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+            }
         }
         
         else if(canUpgradeTower())

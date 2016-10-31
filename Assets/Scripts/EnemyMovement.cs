@@ -69,7 +69,7 @@ public class EnemyMovement : MonoBehaviour {
 
         Transform mesh = transform.Find("HealthBar");
         //print(mesh);
-        transform.rotation = Quaternion.LookRotation(new Vector3(-bufferZ,0,bufferX), Vector3.up);
+        transform.rotation = Quaternion.LookRotation(new Vector3(bufferZ,0,-bufferX), Vector3.up);
         
     }
 
