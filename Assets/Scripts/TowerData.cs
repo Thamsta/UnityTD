@@ -15,9 +15,8 @@ public class TowerLevel
 public class TowerData : MonoBehaviour {
 
     public List<TowerLevel> _levels;
+    public Texture2D cursorTexture;
     private TowerLevel _currentLevel;
-    private GameObject _currentMesh;
-
 
     void OnEnable()
     {
@@ -47,11 +46,6 @@ public class TowerData : MonoBehaviour {
                     _levels[i].visualization.SetActive(false);
                 }
             }
-            //GameObject levelVisualization = _levels[currentLevelIndex].visualization;
-            /**
-            Destroy(_currentMesh);
-            _currentMesh = (GameObject) Instantiate(_levels[currentLevelIndex].visualization, transform.position, Quaternion.Euler(90, 0, 0));
-    */
         }
     }
 

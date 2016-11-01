@@ -607,6 +607,7 @@ MonoBehaviour:
     visualization: {fileID: 1000011229900580}
     _bullet: {fileID: 1000010918771796, guid: b1ef499e3fa5a414cb7bb3544d9ed86d, type: 2}
     _fireRate: 0.6
+  cursorTexture: {fileID: 2800000, guid: c184fcace955c834fbc02abd8047ad12, type: 3}
 --- !u!136 &136000010927162910
 CapsuleCollider:
   m_ObjectHideFlags: 1

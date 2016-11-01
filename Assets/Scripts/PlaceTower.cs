@@ -18,7 +18,7 @@ public class PlaceTower : MonoBehaviour {
     {
         if (CanPlaceTower())
         {
-            _tower = (GameObject) Instantiate(_selectTower.activeTower, transform.position, Quaternion.identity);
+            _tower = (GameObject) Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
         
@@ -31,15 +31,14 @@ public class PlaceTower : MonoBehaviour {
 
     private bool CanPlaceTower()
     {
-        if (_selectTower.activeTower == null)
+        if (_selectTower.ActiveTower == null)
         {
-            print("Test");
             _gameManager.SetMessageLabelText("Select a tower first");
             return false;
         }
         else
         {
-            int cost = _selectTower.activeTower.GetComponent<TowerData>()._levels[0].cost;
+            int cost = _selectTower.ActiveTower.GetComponent<TowerData>()._levels[0].cost;
             return _tower == null && (_gameManager.Gold >= cost);
         }
     }

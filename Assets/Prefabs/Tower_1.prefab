@@ -301,6 +301,7 @@ MonoBehaviour:
     visualization: {fileID: 1000011933446150}
     _bullet: {fileID: 1000013545406090, guid: b8a1513049b0ecd4fb7bd87f0231287a, type: 2}
     _fireRate: 0.25
+  cursorTexture: {fileID: 2800000, guid: d0f1f194d9b638946a8a39757480f124, type: 3}
 --- !u!114 &114000013863111342
 MonoBehaviour:
   m_ObjectHideFlags: 1
