@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ShootEnemies : MonoBehaviour {
-    public List<GameObject> enemiesInRange;
+    private List<GameObject> enemiesInRange;
     private float lastShotTime;
     private TowerData towerData;
 
@@ -72,7 +72,7 @@ public class ShootEnemies : MonoBehaviour {
             del.enemyDelegate += OnEnemyDestroy;
         }
     }
-    // 3
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))

@@ -61,6 +61,7 @@ public class SpawnEnemy : MonoBehaviour {
 		lastEnemySpawnTime = Time.time;
 		enemiesToSpawn = enemiesToSpawn - 1;
 
+        //Spawns an enemy of a random type, maybe add a given order?
 		int enemyType = Mathf.RoundToInt (Mathf.Clamp (0, Random.value * (enemyPrefabs.Length - 1), enemyPrefabs.Length - 1));
 
 		Debug.Log ("Spawned Enemy of type: " + enemyType.ToString ());

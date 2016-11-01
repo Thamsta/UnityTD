@@ -945,9 +945,7 @@ GameObject:
   - component: {fileID: 833897835}
   - component: {fileID: 833897834}
   - component: {fileID: 833897839}
-  - component: {fileID: 833897840}
   - component: {fileID: 833897842}
-  - component: {fileID: 833897841}
   - component: {fileID: 833897843}
   m_Layer: 0
   m_Name: Main Camera
@@ -1062,48 +1060,6 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!114 &833897840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 833897833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b5ec6153a1d55438228df10fe66844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceFog: 0
-  excludeFarPixels: 1
-  useRadialDistance: 0
-  heightFog: 1
-  height: 1
-  heightDensity: 2
-  startDistance: 0
-  fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
---- !u!114 &833897841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 833897833}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e318a6043c1cb4a8ce1c8805bab930, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resolution: 1
-  screenBlendMode: 0
-  sunTransform: {fileID: 0}
-  radialBlurIterations: 2
-  sunColor: {r: 1, g: 0.98073024, b: 0.7205882, a: 1}
-  sunThreshold: {r: 1, g: 0.90993917, b: 0.18382353, a: 1}
-  sunShaftBlurRadius: 2.5
-  sunShaftIntensity: 1.15
-  maxRadius: 0.75
-  useDepthTexture: 1
-  sunShaftsShader: {fileID: 4800000, guid: d3b1c8c1036784176946f5cfbfb7fe4c, type: 3}
-  simpleClearShader: {fileID: 4800000, guid: f688f89ed5eb847c5b19c934a0f1e772, type: 3}
 --- !u!114 &833897842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,7 +1606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f2f606fb2b7614597ef4d02481bca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testSprite: {fileID: 2800000, guid: 442bdfcfdcc54b148aa7ba2c456e13e1, type: 3}
 --- !u!1 &1112359132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,9 +1767,9 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1516673179739234, guid: 74018e36ac2609348bbe69ef2109fb26, type: 2}
   - {fileID: 1000011041994082, guid: f11e29079fa2e3e4c8c2f154e0366442, type: 2}
-  waveSpawnInterval: 5
-  enemySpawnInterval: 1
-  enemySpawnCounter: 5
+  waveSpawnInterval: 2
+  enemySpawnInterval: 0.2
+  enemySpawnCounter: 20
   enemiesToSpawn: 0
   lastEnemySpawnTime: 0
   lastEnemyCounter: 0
