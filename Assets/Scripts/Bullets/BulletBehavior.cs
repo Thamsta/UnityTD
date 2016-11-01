@@ -25,6 +25,7 @@ public class BulletBehavior : MonoBehaviour {
     }
 	
 	void Update () {
+        Move();
         if (gameObject.transform.position.Equals(targetPosition))
         {
             if (target != null)

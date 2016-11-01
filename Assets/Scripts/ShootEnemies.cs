@@ -46,7 +46,7 @@ public class ShootEnemies : MonoBehaviour {
 
         Vector3 startPosition = gameObject.transform.position;
         Vector3 targetPosition = target.transform.position;
-        startPosition.y = bulletPrefab.transform.position.y;
+        startPosition.y = bulletPrefab.transform.position.y + 10;
         targetPosition.y = bulletPrefab.transform.position.y;
 
         GameObject newBullet = Instantiate(bulletPrefab);
