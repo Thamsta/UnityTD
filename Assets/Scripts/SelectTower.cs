@@ -7,7 +7,6 @@ public class SelectTower : MonoBehaviour
 {
     [HideInInspector]
     private GameObject activeTower;
-    public Texture2D testSprite;
 
     public GameObject ActiveTower
     {
@@ -15,7 +14,15 @@ public class SelectTower : MonoBehaviour
         set
         {
             activeTower = value;
-            Cursor.SetCursor(activeTower.GetComponent<TowerData>().cursorTexture, Vector2.zero, CursorMode.Auto);
+            if(activeTower != null)
+            {
+                Cursor.SetCursor(activeTower.GetComponent<TowerData>().cursorTexture, Vector2.zero, CursorMode.Auto);
+            }
+            else
+            {
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            }
+            
         }
     }
 
@@ -28,7 +35,10 @@ public class SelectTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonUp(1))
+        {
+            ActiveTower = null;
+        }
     }
 
     public void ButtonClicked(GameObject tower)
@@ -36,7 +46,4 @@ public class SelectTower : MonoBehaviour
         ActiveTower = tower;
         GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText(""); 
     }
-    
-
-
 }
