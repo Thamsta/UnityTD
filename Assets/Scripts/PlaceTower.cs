@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlaceTower : MonoBehaviour {
 
+
     private SelectTower _selectTower;
     private GameObject _tower;
     private GameManagerBehavior _gameManager;
@@ -16,17 +17,44 @@ public class PlaceTower : MonoBehaviour {
 
     void OnMouseUp()
     {
-        if (CanPlaceTower())
+        if (_selectTower.SellMode && _tower != null)
         {
-            _tower = (GameObject) Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
+            _gameManager.Gold += CalculateRefund();
+            Destroy(_tower);
+            //unnecessary?
+            print(_tower);
+            _tower = null;
+        }
+        else if (CanPlaceTower())
+        {
+            _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
-        
-        else if(CanUpgradeTower())
+
+        else if (CanUpgradeTower())
         {
             _tower.GetComponent<TowerData>().increaseLevel();
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
+    }
+
+    //Dynamically calculates the refund of a sold tower
+    private int CalculateRefund()
+    {
+        TowerData activeTowerData = _tower.GetComponent<TowerData>();
+        int refundGold = 0;
+        int n = 0;
+
+        //infinite loop
+        while (activeTowerData._levels[n] != activeTowerData.CurrentLevel)
+        { 
+            refundGold += (activeTowerData._levels[n].cost);
+            n++;
+        }
+
+        refundGold += (activeTowerData._levels[n].cost);
+
+        return refundGold;
     }
 
     private bool CanPlaceTower()

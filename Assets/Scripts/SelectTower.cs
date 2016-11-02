@@ -5,8 +5,19 @@ using System.Collections.Generic;
 
 public class SelectTower : MonoBehaviour
 {
-    [HideInInspector]
     private GameObject activeTower;
+    private bool sellMode;
+
+    public bool SellMode
+    {
+        get { return sellMode; }
+        set
+        {
+            sellMode = value;
+            activeTower = null;
+            //TODO: Set cursor
+        }
+    }
 
     public GameObject ActiveTower
     {
@@ -26,12 +37,6 @@ public class SelectTower : MonoBehaviour
         }
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +48,13 @@ public class SelectTower : MonoBehaviour
 
     public void ButtonClicked(GameObject tower)
     {
+        SellMode = false;
         ActiveTower = tower;
         GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText(""); 
+    }
+
+    public void SellButtonClicked()
+    {
+        SellMode = true;
     }
 }

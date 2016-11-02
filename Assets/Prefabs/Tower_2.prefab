@@ -598,11 +598,11 @@ MonoBehaviour:
     _fireRate: 1
   - cost: 150
     visualization: {fileID: 1000012163307872}
-    _bullet: {fileID: 1000010918771796, guid: b1ef499e3fa5a414cb7bb3544d9ed86d, type: 2}
+    _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
     _fireRate: 0.8
   - cost: 200
     visualization: {fileID: 1000011229900580}
-    _bullet: {fileID: 1000010918771796, guid: b1ef499e3fa5a414cb7bb3544d9ed86d, type: 2}
+    _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
     _fireRate: 0.6
   cursorTexture: {fileID: 2800000, guid: c184fcace955c834fbc02abd8047ad12, type: 3}
 --- !u!136 &136000010927162910

@@ -11,7 +11,6 @@ public class TowerLevel
     public float _fireRate;
 }
 
-
 public class TowerData : MonoBehaviour {
 
     public List<TowerLevel> _levels;
