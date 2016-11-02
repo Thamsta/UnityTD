@@ -45,7 +45,6 @@ public class PlaceTower : MonoBehaviour {
         int refundGold = 0;
         int n = 0;
 
-        //infinite loop
         while (activeTowerData._levels[n] != activeTowerData.CurrentLevel)
         { 
             refundGold += (activeTowerData._levels[n].cost);
@@ -53,6 +52,8 @@ public class PlaceTower : MonoBehaviour {
         }
 
         refundGold += (activeTowerData._levels[n].cost);
+        //typecast to int rounds down
+        refundGold = (int) (refundGold * 0.5);
 
         return refundGold;
     }

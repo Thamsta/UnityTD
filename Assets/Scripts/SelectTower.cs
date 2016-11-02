@@ -14,8 +14,7 @@ public class SelectTower : MonoBehaviour
         set
         {
             sellMode = value;
-            activeTower = null;
-            //TODO: Set cursor
+            ActiveTower = null;
         }
     }
 
@@ -25,15 +24,8 @@ public class SelectTower : MonoBehaviour
         set
         {
             activeTower = value;
-            if(activeTower != null)
-            {
-                Cursor.SetCursor(activeTower.GetComponent<TowerData>().cursorTexture, Vector2.zero, CursorMode.Auto);
-            }
-            else
-            {
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            }
-            
+            print("test");
+            SetCursor();
         }
     }
 
@@ -43,6 +35,24 @@ public class SelectTower : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             ActiveTower = null;
+        }
+    }
+
+    // Sets the Sprite for the cursor depending on the selected Mode
+    void SetCursor()
+    {
+        if (activeTower != null)
+        {
+            Cursor.SetCursor(activeTower.GetComponent<TowerData>().cursorTexture, Vector2.zero, CursorMode.Auto);
+        }
+        else if(sellMode)
+        {
+            //TODO: Add Cursor-sprite for Sell-Mode
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
     }
 
