@@ -93,10 +93,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  damage: 25
+  damage: 1
   target: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+  explosion: {fileID: 1915249250906554, guid: 5846277f068739d458394167df4a5b24, type: 2}
 --- !u!135 &135799681592643348
 SphereCollider:
   m_ObjectHideFlags: 1
