@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombBulletBehavior : BulletBehavior {
 
+    public GameObject explosion;
     private List<GameObject> enemiesInRange = new List<GameObject>();
 
     //overrides automatically
@@ -15,6 +16,7 @@ public class BombBulletBehavior : BulletBehavior {
             {
                 DealDamage(enemy);
             }
+            Instantiate(explosion).transform.position = gameObject.transform.position;
             Destroy(gameObject);
         }
     }

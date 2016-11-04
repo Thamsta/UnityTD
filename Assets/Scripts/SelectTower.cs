@@ -24,7 +24,6 @@ public class SelectTower : MonoBehaviour
         set
         {
             activeTower = value;
-            print("test");
             SetCursor();
         }
     }
@@ -60,11 +59,12 @@ public class SelectTower : MonoBehaviour
     {
         SellMode = false;
         ActiveTower = tower;
-        GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText(""); 
+        GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText("");
     }
 
     public void SellButtonClicked()
     {
         SellMode = true;
+        GameObject.Find("GameManager").GetComponent<GameManagerBehavior>().SetMessageLabelText("Sell");
     }
 }

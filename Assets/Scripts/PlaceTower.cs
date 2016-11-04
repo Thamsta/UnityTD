@@ -30,7 +30,6 @@ public class PlaceTower : MonoBehaviour {
             _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
         }
-
         else if (CanUpgradeTower())
         {
             _tower.GetComponent<TowerData>().increaseLevel();
@@ -62,7 +61,7 @@ public class PlaceTower : MonoBehaviour {
     {
         if (_selectTower.ActiveTower == null)
         {
-            _gameManager.SetMessageLabelText("Select a tower first");
+            if (_tower == null) { _gameManager.SetMessageLabelText("Select a tower first"); }
             return false;
         }
         else
@@ -82,6 +81,10 @@ public class PlaceTower : MonoBehaviour {
             {
                 int cost = nextLevel.cost;
                 return _gameManager.Gold >= cost;
+            }
+            else
+            {
+                _gameManager.SetMessageLabelText("Tower is already at max level");
             }
         }
         return false;
