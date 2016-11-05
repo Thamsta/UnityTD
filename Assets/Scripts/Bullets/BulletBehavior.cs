@@ -51,7 +51,7 @@ public class BulletBehavior : MonoBehaviour {
         if (healthBar.currentHealth <= 0)
         {
             Destroy(target);
-            gameManager.Gold += 50;
+            //gameManager.Gold += 50;
         }
     }
 

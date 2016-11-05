@@ -595,15 +595,15 @@ MonoBehaviour:
   - cost: 250
     visualization: {fileID: 1000012133046940}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
-    _fireRate: 1
+    _fireRate: 2
   - cost: 150
     visualization: {fileID: 1000012163307872}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
-    _fireRate: 0.8
+    _fireRate: 1.7
   - cost: 200
     visualization: {fileID: 1000011229900580}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
-    _fireRate: 0.6
+    _fireRate: 1.2
   cursorTexture: {fileID: 2800000, guid: c184fcace955c834fbc02abd8047ad12, type: 3}
 --- !u!136 &136000010927162910
 CapsuleCollider:

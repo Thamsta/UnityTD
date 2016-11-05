@@ -21,8 +21,7 @@ public class PlaceTower : MonoBehaviour {
         {
             _gameManager.Gold += CalculateRefund();
             Destroy(_tower);
-            //unnecessary?
-            print(_tower);
+            //setting null is necessary
             _tower = null;
         }
         else if (CanPlaceTower())

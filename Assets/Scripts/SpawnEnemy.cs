@@ -17,29 +17,37 @@ public class SpawnEnemy : MonoBehaviour {
 	public int lastEnemyCounter;
 	public float lastWaveEndTime;
 
-	// Use this for initialization
+    private GameManagerBehavior gameManager;
+
+
 	void Start () {
-		lastEnemyCounter = 0;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+
+        lastEnemyCounter = 0;
 		lastWaveEndTime = 0;
 		lastEnemySpawnTime = 0;
 
 		enemiesToSpawn = enemySpawnCounter;
+        gameManager.SetRemainingEnemies(enemySpawnCounter);
 	}
 
-	// Update is called once per frame
 	void Update () {
-
 		//Last enemy just died and wave has ended
-		if (CountEnemies () == 0 && enemiesToSpawn == 0) {
+		if (CountEnemies() == 0 && enemiesToSpawn == 0) {
 			if (lastEnemyCounter != 0) {
 
 				//When did the wave end?
 				lastWaveEndTime = Time.time;
 
-				Debug.Log ("WAVE CLEARED!");
+
+                //sends information to GUI
+                gameManager.SetRemainingEnemies(enemySpawnCounter);
+                Debug.Log ("WAVE CLEARED!");
 			} 
 			if (Time.time - lastWaveEndTime > waveSpawnInterval) {
-				enemiesToSpawn = enemySpawnCounter;
+                
+
+                enemiesToSpawn = enemySpawnCounter;
 			}
 		}
 
@@ -48,6 +56,7 @@ public class SpawnEnemy : MonoBehaviour {
 			//Spawn enemies in a set interval
 			if (Time.time - lastEnemySpawnTime > enemySpawnInterval) {
 				Spawn ();
+                gameManager.DecrementRemainingEnemies();
 			}
 		}
 
@@ -64,8 +73,6 @@ public class SpawnEnemy : MonoBehaviour {
         //TODO: add determined wave behavior
         //Spawns an enemy of a random type, maybe add a given order?
 		int enemyType = Mathf.RoundToInt (Mathf.Clamp (0, Random.value * (enemyPrefabs.Length - 1), enemyPrefabs.Length - 1));
-
-		// Debug.Log ("Spawned Enemy of type: " + enemyType.ToString ());
 
 		GameObject enemy = Instantiate (enemyPrefabs[enemyType]);
 		enemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
