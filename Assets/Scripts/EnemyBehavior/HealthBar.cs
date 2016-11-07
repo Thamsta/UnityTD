@@ -18,4 +18,13 @@ public class HealthBar : MonoBehaviour {
         tmpScale.x = (currentHealth / maxHealth) * originalScale;
         gameObject.transform.localScale = tmpScale;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>Relative life in percent</returns>
+    public float RelativeLife()
+    {
+        return currentHealth / maxHealth * 100;
+    }
 }

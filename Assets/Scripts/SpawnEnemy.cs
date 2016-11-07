@@ -78,7 +78,7 @@ public class SpawnEnemy : MonoBehaviour {
         //Spawns an enemy of a random type, maybe add a given order?
 		int enemyType = Mathf.RoundToInt (Mathf.Clamp (0, Random.value * (enemyPrefabs.Length - 1), enemyPrefabs.Length - 1));
 
-		GameObject enemy = Instantiate (enemyPrefabs[enemyType]);
+		GameObject enemy = Instantiate (enemyPrefabs[enemyType], waypoints[0].transform.position,Quaternion.identity);
 		enemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
 	}
 
