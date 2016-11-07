@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ /*
 class Wave : MonoBehaviour {
 
 	public int enemySpawnCounter;
@@ -82,4 +82,4 @@ struct WaveInfo {
 		return enemySpawnCounter;
 	}
 
-}
+}*/
