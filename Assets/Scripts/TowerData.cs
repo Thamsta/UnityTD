@@ -32,7 +32,6 @@ public class TowerData : MonoBehaviour {
         set
         {
             _currentLevel = value;
-            int currentLevelIndex = _levels.IndexOf(_currentLevel);
 
             for(int i = 0; i < _levels.Count;i++)
             {

@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour {
         float bufferZ = newDirection.z;
 
         //TODO: Rotate HealthBar appropiately
-        Transform mesh = transform.Find("HealthBar");
+        //Transform mesh = transform.Find("HealthBar");
         //print(mesh);
         transform.rotation = Quaternion.LookRotation(new Vector3(bufferZ,0,-bufferX), Vector3.up);
         
