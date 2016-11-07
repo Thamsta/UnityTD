@@ -1,6 +1,17 @@
-KLARE ZIELE BIS NÄCHSTEN MONTAG:
+KLARE ZIELE BIS NÄCHSTEN MONTAG (14.11.16):
 • Rami: Pech-Tower
 • Sven: Squad-goals nach Git bringen
 		Neue Gegner!
 		Bullet-Behavior Erben schön machen
 • Chrono: Predeterminiertes Wellenverhalten
+
+
+Milestone:
+
+Neue Türme
+	2
+Neue Gegner
+	Bossgegner
+	Gegner der immer schneller wird mit Lebensverlust
+Wellenverhalten
+	Einzelne Wellen konfigurierbar
