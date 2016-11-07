@@ -2122,11 +2122,10 @@ MonoBehaviour:
   - {fileID: 845192139}
   - {fileID: 2115253628}
   enemyPrefabs:
-  - {fileID: 1516673179739234, guid: 74018e36ac2609348bbe69ef2109fb26, type: 2}
   - {fileID: 1000011041994082, guid: f11e29079fa2e3e4c8c2f154e0366442, type: 2}
   waveSpawnInterval: 2
-  enemySpawnInterval: 1
-  enemySpawnCounter: 35
+  enemySpawnInterval: 2
+  enemySpawnCounter: 10
   enemiesToSpawn: 0
   lastEnemySpawnTime: 0
   lastEnemyCounter: 0

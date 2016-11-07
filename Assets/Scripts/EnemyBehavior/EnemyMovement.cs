@@ -6,31 +6,28 @@ public class EnemyMovement : MonoBehaviour {
     [HideInInspector]
     public GameObject[] waypoints;
     private int currentWaypoint = 0;
-    private float lastWaypointSwitchTime;
+    private float originalSpeed;
     public float speed;
 
     // Use this for initialization
     void Start () {
-        lastWaypointSwitchTime = Time.time;
+        originalSpeed = speed;
+        RotateIntoMoveDirection();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 startPosition = waypoints[currentWaypoint].transform.position;
         Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
 
-        float pathLength = Vector3.Distance(startPosition, endPosition);
-        float totalTimeForPath = pathLength / speed;
-        float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
-        float fracPath = currentTimeOnPath / totalTimeForPath;
-        gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, fracPath);
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, endPosition, step);
+
 
         if (gameObject.transform.position.Equals(endPosition))
         {
             if (currentWaypoint < waypoints.Length - 2)
             {
                 currentWaypoint++;
-                lastWaypointSwitchTime = Time.time;
                 RotateIntoMoveDirection();
             }
             else
@@ -41,6 +38,11 @@ public class EnemyMovement : MonoBehaviour {
                 gm.GetComponent<GameManagerBehavior>().Health -= 1;
             }
         }
+    }
+
+    public void ScaleSpeed(float scale)
+    {
+        speed = originalSpeed * scale;
     }
 
     public float distanceToGoal()

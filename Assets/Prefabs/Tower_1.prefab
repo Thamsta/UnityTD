@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779cfb25899e4fc4db8a8d6d720394fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesInRange: []
 --- !u!114 &114000013207221490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779cfb25899e4fc4db8a8d6d720394fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesInRange: []
 --- !u!114 &114000013824549118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,7 +290,7 @@ MonoBehaviour:
   - cost: 200
     visualization: {fileID: 1000013395158638}
     _bullet: {fileID: 1000013545406090, guid: b8a1513049b0ecd4fb7bd87f0231287a, type: 2}
-    _fireRate: 0.5
+    _fireRate: 0.6
   - cost: 125
     visualization: {fileID: 1000011370486368}
     _bullet: {fileID: 1000013545406090, guid: b8a1513049b0ecd4fb7bd87f0231287a, type: 2}
@@ -313,7 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779cfb25899e4fc4db8a8d6d720394fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesInRange: []
 --- !u!136 &136000011759088310
 CapsuleCollider:
   m_ObjectHideFlags: 1
