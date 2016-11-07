@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnEnemy : MonoBehaviour {
 
@@ -17,6 +18,8 @@ public class SpawnEnemy : MonoBehaviour {
 	public int lastEnemyCounter;
 	public float lastWaveEndTime;
 
+	public int waveCounter;
+
     private GameManagerBehavior gameManager;
 
 
@@ -27,27 +30,28 @@ public class SpawnEnemy : MonoBehaviour {
 		lastWaveEndTime = 0;
 		lastEnemySpawnTime = 0;
 
+		waveCounter = 0;
+
 		enemiesToSpawn = enemySpawnCounter;
         gameManager.SetRemainingEnemies(enemySpawnCounter);
 	}
 
 	void Update () {
 		//Last enemy just died and wave has ended
-		if (CountEnemies() == 0 && enemiesToSpawn == 0) {
+		if (CountEnemies () == 0 && enemiesToSpawn == 0) {
 			if (lastEnemyCounter != 0) {
 
 				//When did the wave end?
 				lastWaveEndTime = Time.time;
 
-
-                //sends information to GUI
-                gameManager.SetRemainingEnemies(enemySpawnCounter);
-                Debug.Log ("WAVE CLEARED!");
+				//sends information to GUIp
+				gameManager.SetRemainingEnemies (enemySpawnCounter);
+				Debug.Log ("WAVE CLEARED!");
 			} 
-			if (Time.time - lastWaveEndTime > waveSpawnInterval) {
-                
 
-                enemiesToSpawn = enemySpawnCounter;
+			if (Time.time - lastWaveEndTime > waveSpawnInterval) {            
+
+				enemiesToSpawn = enemySpawnCounter;
 			}
 		}
 
@@ -56,7 +60,7 @@ public class SpawnEnemy : MonoBehaviour {
 			//Spawn enemies in a set interval
 			if (Time.time - lastEnemySpawnTime > enemySpawnInterval) {
 				Spawn ();
-                gameManager.DecrementRemainingEnemies();
+				gameManager.DecrementRemainingEnemies ();
 			}
 		}
 
@@ -82,4 +86,3 @@ public class SpawnEnemy : MonoBehaviour {
 		return GameObject.FindGameObjectsWithTag ("Enemy").GetLength (0);
 	}
 }
-
