@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class PlaceTower : MonoBehaviour {
@@ -17,22 +18,25 @@ public class PlaceTower : MonoBehaviour {
 
     void OnMouseUp()
     {
-        if (_selectTower.SellMode && _tower != null)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            _gameManager.Gold += CalculateRefund();
-            Destroy(_tower);
-            //setting null is necessary
-            _tower = null;
-        }
-        else if (CanPlaceTower())
-        {
-            _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
-            _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
-        }
-        else if (CanUpgradeTower())
-        {
-            _tower.GetComponent<TowerData>().increaseLevel();
-            _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+            if (_selectTower.SellMode && _tower != null)
+            {
+                _gameManager.Gold += CalculateRefund();
+                Destroy(_tower);
+                //setting null is necessary
+                _tower = null;
+            }
+            else if (CanPlaceTower())
+            {
+                _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
+                _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+            }
+            else if (CanUpgradeTower())
+            {
+                _tower.GetComponent<TowerData>().increaseLevel();
+                _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+            }
         }
     }
 
