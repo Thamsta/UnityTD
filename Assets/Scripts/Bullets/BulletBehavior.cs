@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletBehavior : MonoBehaviour {
+public class BulletBehavior : MonoBehaviour
+{
 
     public float speed = 10;
     public int damage;
@@ -17,14 +18,16 @@ public class BulletBehavior : MonoBehaviour {
 
     protected GameManagerBehavior gameManager;
 
-    void Start () {
+    void Start()
+    {
         startTime = Time.time;
         distance = Vector3.Distance(startPosition, targetPosition);
         GameObject gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManagerBehavior>();
     }
-	
-	void Update () {
+
+    void Update()
+    {
         Move();
         if (gameObject.transform.position.Equals(targetPosition))
         {
@@ -42,29 +45,32 @@ public class BulletBehavior : MonoBehaviour {
         gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
     }
 
-    protected void DealDamage()
+    protected void DealDamage(GameObject otherTarget = null)
     {
-        Transform healthBarTransform = target.transform.FindChild("HealthBar");
-        HealthBar healthBar =
-            healthBarTransform.gameObject.GetComponent<HealthBar>();
-        healthBar.currentHealth -= Mathf.Max(damage, 0);
-        if (healthBar.currentHealth <= 0)
+        bool towerFocused = otherTarget == null;
+        Transform healthBarTransform;
+        if (!towerFocused)
         {
-            Destroy(target);
-            //gameManager.Gold += 50;
+            healthBarTransform = otherTarget.transform.FindChild("HealthBar");
         }
-    }
-
-    protected void DealDamage(GameObject otherTarget)
-    {
-        Transform healthBarTransform = otherTarget.transform.FindChild("HealthBar");
+        else
+        {
+            healthBarTransform = target.transform.FindChild("HealthBar");
+        }
         HealthBar healthBar =
             healthBarTransform.gameObject.GetComponent<HealthBar>();
         healthBar.currentHealth -= Mathf.Max(damage, 0);
         if (healthBar.currentHealth <= 0)
         {
-            Destroy(otherTarget);
-            gameManager.Gold += 50;
+            if (towerFocused)
+            {
+                Destroy(target);
+            }
+            else
+            {
+                Destroy(otherTarget);
+                gameManager.Gold += 50;
+            }
         }
     }
 }
