@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// The basic class that determines the Bullet Behavior. 
+/// Classes that inherit from this class can change the behavior by tweaking the <block>Move</block>, <block>OnDestinationReached</block> or <block>DealDamage</block> functions.
+/// </summary>
 public class BulletBehavior : MonoBehaviour {
 
     public float speed = 10;
@@ -24,38 +28,41 @@ public class BulletBehavior : MonoBehaviour {
         gameManager = gm.GetComponent<GameManagerBehavior>();
     }
 	
-	void Update () {
+	protected void Update () {
         Move();
         if (gameObject.transform.position.Equals(targetPosition))
         {
-            if (target != null)
-            {
-                DealDamage();
-            }
-            Destroy(gameObject);
+            OnDestinationReached();
         }
     }
 
-    protected void Move()
+    /// <summary>
+    /// Moves the bullet towards the target position
+    /// </summary>
+    protected virtual void Move()
     {
         float timeInterval = Time.time - startTime;
         gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
     }
 
-    protected void DealDamage()
+    /// <summary>
+    /// Defines the behaviour if the bullet reached it's target-location
+    /// </summary>
+    protected virtual void OnDestinationReached()
     {
-        Transform healthBarTransform = target.transform.FindChild("HealthBar");
-        HealthBar healthBar =
-            healthBarTransform.gameObject.GetComponent<HealthBar>();
-        healthBar.currentHealth -= Mathf.Max(damage, 0);
-        if (healthBar.currentHealth <= 0)
+        if (target != null)
         {
-            Destroy(target);
-            //gameManager.Gold += 50;
+            DealDamage();
         }
+        Destroy(gameObject);
     }
 
-    protected void DealDamage(GameObject otherTarget)
+    /// <summary>
+    /// Deals Damage to a GameObject with a HealthBar script. Can't deal less then 0 Damage.
+    /// If the health of the target drops below 0, the function destroys the GameObject.
+    /// </summary>
+    /// <param name="otherTarget">The target which should recieve damage</param>
+    protected virtual void DealDamage(GameObject otherTarget)
     {
         Transform healthBarTransform = otherTarget.transform.FindChild("HealthBar");
         HealthBar healthBar =
@@ -64,7 +71,14 @@ public class BulletBehavior : MonoBehaviour {
         if (healthBar.currentHealth <= 0)
         {
             Destroy(otherTarget);
-            gameManager.Gold += 50;
         }
+    }
+
+    /// <summary>
+    /// Calls the DealDamage(gameObject) function with the default target
+    /// </summary>
+    protected virtual void DealDamage()
+    {
+        DealDamage(target);
     }
 }

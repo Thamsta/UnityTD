@@ -7,20 +7,15 @@ public class BombBulletBehavior : BulletBehavior {
     public GameObject explosion;
     private List<GameObject> enemiesInRange = new List<GameObject>();
 
-    //overrides automatically
-    void Update () {
-        Move();
-        if (gameObject.transform.position.Equals(targetPosition))
+    protected override void OnDestinationReached()
+    {
+        foreach (GameObject enemy in enemiesInRange)
         {
-            foreach (GameObject enemy in enemiesInRange)
-            {
-                DealDamage(enemy);
-            }
-            Instantiate(explosion).transform.position = gameObject.transform.position;
-            Destroy(gameObject);
+            DealDamage(enemy);
         }
+        Instantiate(explosion).transform.position = gameObject.transform.position;
+        Destroy(gameObject);
     }
-
     
     //Triggerfunctions
     void OnEnemyDestroy(GameObject enemy)
