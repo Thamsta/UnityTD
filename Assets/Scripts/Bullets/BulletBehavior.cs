@@ -6,7 +6,6 @@ using System.Collections;
 /// Classes that inherit from this class can change the behavior by tweaking the <block>Move</block>, <block>OnDestinationReached</block> or <block>DealDamage</block> functions.
 /// </summary>
 public class BulletBehavior : MonoBehaviour {
-
     public float speed = 10;
     public int damage;
     [HideInInspector]
@@ -21,13 +20,14 @@ public class BulletBehavior : MonoBehaviour {
 
     protected GameManagerBehavior gameManager;
 
-    void Start () {
+    void Start()
+    {
         startTime = Time.time;
         distance = Vector3.Distance(startPosition, targetPosition);
         GameObject gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManagerBehavior>();
     }
-	
+
 	protected void Update () {
         Move();
         if (gameObject.transform.position.Equals(targetPosition))
