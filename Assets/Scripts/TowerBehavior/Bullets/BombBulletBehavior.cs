@@ -16,7 +16,7 @@ public class BombBulletBehavior : BulletBehavior {
         Instantiate(explosion).transform.position = gameObject.transform.position;
         Destroy(gameObject);
     }
-    
+
     //Triggerfunctions
     void OnEnemyDestroy(GameObject enemy)
     {
