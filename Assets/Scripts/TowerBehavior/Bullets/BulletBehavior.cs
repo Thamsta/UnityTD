@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// The basic class that determines the Bullet Behavior. 
 /// Classes that inherit from this class can change the behavior by tweaking the <block>Move</block>, <block>OnDestinationReached</block> or <block>DealDamage</block> functions.
 /// </summary>
-public class BulletBehavior : MonoBehaviour {
+public abstract class BulletBehavior : MonoBehaviour {
     public float speed = 10;
     public int damage;
     [HideInInspector]
@@ -50,12 +51,14 @@ public class BulletBehavior : MonoBehaviour {
     /// </summary>
     protected virtual void OnDestinationReached()
     {
-        if (target != null)
+        if (target != null && damage != 0)
         {
             DealDamage();
         }
+        ApplyEffect();
         Destroy(gameObject);
     }
+
 
     /// <summary>
     /// Deals Damage to a GameObject with a HealthBar script. Can't deal less then 0 Damage.
@@ -81,4 +84,6 @@ public class BulletBehavior : MonoBehaviour {
     {
         DealDamage(target);
     }
+
+    protected void ApplyEffect() { }
 }

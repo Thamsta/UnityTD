@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewTestBullet : BulletBehavior {
+public class MageBulletBehavior : BulletBehavior {
 
 }
