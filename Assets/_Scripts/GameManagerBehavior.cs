@@ -5,11 +5,11 @@ using System.Collections;
 public class GameManagerBehavior : MonoBehaviour {
     private readonly float messageShowTime = 1.3f;
 
-    public Text goldLabel;
-    public Text healthLabel;
-    public Text messageLabel;
-    public Text waveLabel;
-    public Text remainLabel;
+    private Text goldLabel;
+    private Text healthLabel;
+    private Text messageLabel;
+    private Text waveLabel;
+    private Text remainLabel;
 
     private float lastMessageUpdate;
 
@@ -43,8 +43,19 @@ public class GameManagerBehavior : MonoBehaviour {
 
     void Start()
     {
-        Gold = 10000;
+        InitialiseLabels();
         Health = 5;
+        Gold = 10000;
+
+    }
+
+    private void InitialiseLabels()
+    {
+        goldLabel = (Text)GameObject.Find("Canvas/GoldLabel").GetComponent("Text");
+        healthLabel = (Text)GameObject.Find("Canvas/HealthLabel").GetComponent("Text");
+        waveLabel = (Text)GameObject.Find("Canvas/WaveLabel").GetComponent("Text");
+        remainLabel = (Text)GameObject.Find("Canvas/RemainLabel").GetComponent("Text");
+        messageLabel = (Text)GameObject.Find("Canvas/TowerSelectPanel/Warning").GetComponent("Text");
     }
 
     void Update()

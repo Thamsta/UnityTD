@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1902548499294792}
+  m_RootGameObject: {fileID: 1000013545406090}
   m_IsPrefabParent: 1
---- !u!1 &1902548499294792
+--- !u!1 &1000013545406090
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4069453279668938}
-  - component: {fileID: 33794288248628258}
-  - component: {fileID: 135799681592643348}
-  - component: {fileID: 23625450981208560}
-  - component: {fileID: 114128033850395000}
+  - component: {fileID: 4000013365703594}
+  - component: {fileID: 33000014199280272}
+  - component: {fileID: 135000011326556820}
+  - component: {fileID: 23000010045329990}
+  - component: {fileID: 114351704850332984}
   m_Layer: 0
-  m_Name: Bullet_2_with explosion
+  m_Name: _MageBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4069453279668938
+--- !u!4 &4000013365703594
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902548499294792}
+  m_GameObject: {fileID: 1000013545406090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_LocalPosition: {x: -0.01788354, y: 0.060000006, z: -0.4713893}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23625450981208560
+--- !u!23 &23000010045329990
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902548499294792}
+  m_GameObject: {fileID: 1000013545406090}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 854da18ff561d9d4eae2e563a2d11f63, type: 2}
+  - {fileID: 2100000, guid: f99c346b64d305d46b15c757b74636c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,39 +74,38 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33794288248628258
+--- !u!33 &33000014199280272
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902548499294792}
+  m_GameObject: {fileID: 1000013545406090}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114128033850395000
+--- !u!114 &114351704850332984
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902548499294792}
+  m_GameObject: {fileID: 1000013545406090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a02caef5a288a04d9a176c1ebf52c4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3221d6d39b04aae4eb241e07eef5e8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 80
   damage: 25
   target: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  explosion: {fileID: 1915249250906554, guid: 5846277f068739d458394167df4a5b24, type: 2}
---- !u!135 &135799681592643348
+--- !u!135 &135000011326556820
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902548499294792}
+  m_GameObject: {fileID: 1000013545406090}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

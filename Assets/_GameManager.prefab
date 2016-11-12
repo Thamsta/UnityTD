@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000012835527196}
   - component: {fileID: 114000014232199588}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: _GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,3 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldLabel: {fileID: 0}
   healthLabel: {fileID: 0}
+  messageLabel: {fileID: 0}
+  waveLabel: {fileID: 0}
+  remainLabel: {fileID: 0}

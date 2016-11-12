@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4000013486682222}
   - component: {fileID: 114000013824549118}
   m_Layer: 2
-  m_Name: Tower_1
+  m_Name: MageTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
