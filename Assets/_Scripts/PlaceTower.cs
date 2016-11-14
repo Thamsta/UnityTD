@@ -9,35 +9,53 @@ public class PlaceTower : MonoBehaviour {
     private SelectTower _selectTower;
     private GameObject _tower;
     private GameManagerBehavior _gameManager;
+    private HUDBehavior towerHUD;
 
     void Start()
     {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
         _selectTower = GameObject.Find("TowerSelectPanel").GetComponent<SelectTower>();
+        towerHUD = GameObject.Find("OnTowerHUD").GetComponent<HUDBehavior>();
     }
 
     void OnMouseUp()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (_selectTower.SellMode && _tower != null)
+            if(_tower == null)
             {
-                _gameManager.Gold += CalculateRefund();
-                Destroy(_tower);
-                //setting null is necessary
-                _tower = null;
+                if (CanPlaceTower())
+                {
+                    _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
+                    _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+                }
             }
-            else if (CanPlaceTower())
+            else
             {
-                _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
-                _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
-            }
-            else if (CanUpgradeTower())
-            {
-                _tower.GetComponent<TowerData>().increaseLevel();
-                _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+                towerHUD.ActivePlatform = gameObject;
             }
         }
+    }
+
+    public void UpgradeTower()
+    {
+        if (CanUpgradeTower())
+        {
+            _tower.GetComponent<TowerData>().increaseLevel();
+            _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+        }
+        else
+        {
+            _gameManager.SetMessageLabelText("Tower is already at max level");
+        }
+    }
+
+    public void SellTower()
+    {
+        _gameManager.Gold += CalculateRefund();
+        Destroy(_tower);
+        //setting null is necessary
+        _tower = null;
     }
 
     //Dynamically calculates the refund of a sold tower
@@ -74,7 +92,7 @@ public class PlaceTower : MonoBehaviour {
         }
     }
 
-    private bool CanUpgradeTower()
+    public bool CanUpgradeTower()
     {
         if (_tower != null)
         {
@@ -84,10 +102,6 @@ public class PlaceTower : MonoBehaviour {
             {
                 int cost = nextLevel.cost;
                 return _gameManager.Gold >= cost;
-            }
-            else
-            {
-                _gameManager.SetMessageLabelText("Tower is already at max level");
             }
         }
         return false;

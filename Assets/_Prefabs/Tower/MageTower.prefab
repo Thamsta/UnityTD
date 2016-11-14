@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012428707682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.82442, y: 0.4, z: 50.074593}
+  m_LocalPosition: {x: -49.06807, y: 93.20598, z: -155.18726}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4000010398761310}
@@ -293,11 +293,11 @@ MonoBehaviour:
     _fireRate: 0.6
   - cost: 125
     visualization: {fileID: 1000011370486368}
-    _bullet: {fileID: 1698829621295492, guid: b7ff714b62155204c8ce9753bf69902b, type: 2}
+    _bullet: {fileID: 1000013545406090, guid: b8a1513049b0ecd4fb7bd87f0231287a, type: 2}
     _fireRate: 0.35
   - cost: 150
     visualization: {fileID: 1000011933446150}
-    _bullet: {fileID: 1698829621295492, guid: b7ff714b62155204c8ce9753bf69902b, type: 2}
+    _bullet: {fileID: 1000013545406090, guid: b8a1513049b0ecd4fb7bd87f0231287a, type: 2}
     _fireRate: 0.25
   cursorTexture: {fileID: 2800000, guid: d0f1f194d9b638946a8a39757480f124, type: 3}
 --- !u!114 &114000013863111342
