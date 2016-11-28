@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010257860140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.363525, y: 0.0000019073486, z: 40.384705}
+  m_LocalPosition: {x: 77.0256, y: 0, z: 14.862524}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4000010544886668}
@@ -595,7 +595,7 @@ MonoBehaviour:
   - cost: 250
     visualization: {fileID: 1000012133046940}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
-    _fireRate: 2
+    _fireRate: 0.5
   - cost: 150
     visualization: {fileID: 1000012163307872}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}

@@ -22,7 +22,7 @@ public class ShootEnemies : MonoBehaviour {
         float minimalEnemyDistance = float.MaxValue;
         foreach (GameObject enemy in enemiesInRange)
         {
-            float distanceToGoal = enemy.GetComponent<EnemyMovement>().distanceToGoal();
+            float distanceToGoal = enemy.GetComponent<EnemyBehaviour>().DistanceToGoal();
             if (distanceToGoal < minimalEnemyDistance)
             {
                 target = enemy;
@@ -40,7 +40,7 @@ public class ShootEnemies : MonoBehaviour {
         }
     }
 
-    void Shoot(Collider target)
+    protected virtual void Shoot(Collider target)
     {
             GameObject bulletPrefab = towerData.CurrentLevel._bullet;
 

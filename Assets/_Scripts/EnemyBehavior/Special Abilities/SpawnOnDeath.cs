@@ -9,12 +9,11 @@ public class SpawnOnDeath : MonoBehaviour {
 
     void OnDestroy()
     {
-        if(gameObject.GetComponentInChildren<EnemyMovement>().reachedEnd)
+        if(gameObject.GetComponentInChildren<EnemyBehaviour>().reachedEnd)
         {
-            Debug.Log("Spawn new Enemy!");
-
             for (int i = 0; i < newEnemies; i++)
             {
+                Debug.Log("Spawn new Enemy!");
                 //TODO: Spawn a new Enemy of the same type!
                 //something like: spawn.SpawnEnemy(gameObject);
             }

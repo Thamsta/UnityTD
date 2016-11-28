@@ -5,7 +5,7 @@ using UnityEngine;
 public class IncreaseMovementOnLowHealth : MonoBehaviour {
 
     private HealthBar health;
-    private EnemyMovement move;
+    private EnemyBehaviour move;
     private int maxHealth;
 
     /// <summary>
@@ -16,7 +16,7 @@ public class IncreaseMovementOnLowHealth : MonoBehaviour {
     void Start()
     {
         health = gameObject.GetComponentInChildren<HealthBar>();
-        move = gameObject.GetComponentInChildren<EnemyMovement>();
+        move = gameObject.GetComponentInChildren<EnemyBehaviour>();
     }
 
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class IncreaseMovementOnLowHealth : MonoBehaviour {
         float relativeLife = health.RelativeLife();
         if (relativeLife != 100)
         {
-            move.ScaleSpeed(1 + ((100 - relativeLife) * (scale / 100)));
+            //move.ScaleSpeed(1 + ((100 - relativeLife) * (scale / 100)));
         }
 	}
 }

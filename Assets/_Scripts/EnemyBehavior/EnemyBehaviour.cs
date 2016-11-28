@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class EnemyMovement : MonoBehaviour {
+public class EnemyBehaviour : MonoBehaviour {
 
     [HideInInspector]
     public GameObject[] waypoints;
@@ -9,6 +10,7 @@ public class EnemyMovement : MonoBehaviour {
     private float originalSpeed;
     public float speed;
     public bool reachedEnd;
+    private List<_StatusEffect> effects = new List<_StatusEffect>();
 
     // Use this for initialization
     void Start () {
@@ -18,6 +20,11 @@ public class EnemyMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        foreach (_StatusEffect e in effects)
+        {
+            e.TryApply();
+        }
+        ScaleSpeed();
         Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
 
         float step = speed * Time.deltaTime;
@@ -41,12 +48,76 @@ public class EnemyMovement : MonoBehaviour {
         }
     }
 
-    public void ScaleSpeed(float scale)
+    public void AddStatusEffect(_StatusEffect e)
     {
-        speed = originalSpeed * scale;
+        effects.Add(e);
     }
 
-    public float distanceToGoal()
+    public void RemoveEffectByName(string s)
+    {
+        for(int i = 0; i < effects.Count; i++)
+        {
+            if (effects[i].ToString() == s)
+            {
+                effects.RemoveAt(i);
+                ScaleSpeed();
+                break;
+            }
+        }
+    }
+
+    public _StatusEffect ContainsEffect(string s)
+    {
+        _StatusEffect status = null;
+        foreach(_StatusEffect e in effects)
+        {
+            if(e.ToString() == s)
+            {
+                status = e;
+            }
+        }
+        return status;
+    }
+
+    public void ScaleSpeed()
+    {
+        float scale = 1.0F;
+        if (effects.Count > 0)
+        {
+            foreach (_StatusEffect e in effects)
+            {
+                scale *= e.MovementScale();
+            }
+        }
+        speed = originalSpeed * scale;
+    }
+    /**
+    /// <summary>
+    /// Adds a movement impairment that expires after a time.
+    /// </summary>
+    /// <param name="scale">The scaling for the movespeed. 1.0 as the neutral element</param>
+    /// <param name="duration">The time duration in seconds.</param>
+    public void AddMovementImpairment(float scale, float duration)
+    {
+
+    }
+
+    /// <summary>
+    /// Adds a permanent movement impairment. Returns the index so it can be manually deleted.
+    /// </summary>
+    /// <param name="scale">The scaling for the movespeed. 1.0 as the neutral element</param>
+    public int AddMovementImpairment(float scale)
+    {
+        permMoveImp.Add(scale);
+        return permMoveImp.Count - 1;
+    }
+
+    public void removeMovementImpairment(int index)
+    {
+        permMoveImp[index] = 1.0F;
+    }*/
+
+    public float DistanceToGoal()
     {
         float distance = 0;
         distance += Vector3.Distance(
