@@ -72,7 +72,6 @@ public class SpawnEnemy : MonoBehaviour {
 
 	public void Spawn () {
 
-
 		lastEnemySpawnTime = Time.time;
 		enemiesToSpawn = enemiesToSpawn - 1;
 
