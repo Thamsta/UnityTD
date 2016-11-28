@@ -18,22 +18,24 @@ public class SpawnEnemy : MonoBehaviour {
 	public int lastEnemyCounter;
 	public float lastWaveEndTime;
 
+	Wave wave;
+
 	public int waveCounter;
 
-    private GameManagerBehavior gameManager;
+	private GameManagerBehavior gameManager;
 
 
 	void Start () {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+		gameManager = GameObject.Find ("GameManager").GetComponent<GameManagerBehavior> ();
 
-        lastEnemyCounter = 0;
+		lastEnemyCounter = 0;
 		lastWaveEndTime = 0;
 		lastEnemySpawnTime = 0;
 
 		waveCounter = 0;
 
 		enemiesToSpawn = enemySpawnCounter;
-        gameManager.SetRemainingEnemies(enemySpawnCounter);
+		gameManager.SetRemainingEnemies (enemySpawnCounter);
 	}
 
 	void Update () {
@@ -68,17 +70,17 @@ public class SpawnEnemy : MonoBehaviour {
 		lastEnemyCounter = CountEnemies ();
 	}
 
-	public void Spawn() {
+	public void Spawn () {
 
 
 		lastEnemySpawnTime = Time.time;
 		enemiesToSpawn = enemiesToSpawn - 1;
 
-        //TODO: add determined wave behavior
-        //Spawns an enemy of a random type, maybe add a given order?
+		//TODO: add determined wave behavior
+		//Spawns an enemy of a random type, maybe add a given order?
 		int enemyType = Mathf.RoundToInt (Mathf.Clamp (0, Random.value * (enemyPrefabs.Length - 1), enemyPrefabs.Length - 1));
 
-		GameObject enemy = Instantiate (enemyPrefabs[enemyType], waypoints[0].transform.position,Quaternion.identity);
+		GameObject enemy = Instantiate (enemyPrefabs [enemyType], waypoints [0].transform.position, Quaternion.identity);
 		enemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
 	}
 

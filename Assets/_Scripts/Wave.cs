@@ -1,85 +1,119 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- /*
+
 class Wave : MonoBehaviour {
+	/*
 
-	public int enemySpawnCounter;
-	public int enemiesToSpawn;
-	public int specialEnemiesToSpawn;
+	int currentEnemyIndex;
+	int maxEnemyIndex;
 
-	public int lastEnemyCounter;
-	public float lastEnemySpawnTime;
+	float lastEnemySpawnTime;
+	float lastSpecialEnemySpawnTime;
+
+	float specialEnemySpawnInterval;
+	float enemySpawnInterval;
+
+	bool isSpecialEnemySpawnEnabled;
 
 	GameObject[] enemyPrefabs;
 	GameObject[] waypoints;
 
 	WaveInfo waveInfo;
 
-	public Wave(WaveInfo waveInfo, GameObject[] o, GameObject[] w) {
-		enemyPrefabs = o;
-		waypoints = w;
-		waveInfo = waveInfo;
+	ArrayList enemySpawnList;
+
+	/*
+	 * First place sets spawnInterval
+	 * Second place contains enemies.
+	 * /
+	ArrayList specialEnemySpawnList;
+
+	public Wave () {
 	}
 
-	public void SpawnNext() {
-		lastEnemySpawnTime = Time.time;
-		enemiesToSpawn = enemiesToSpawn - 1;
+	public void SpawnNext () {
+		
+		if (CanSpecialEnemySpawn ()) {
+			StartCoroutine (SpecialEnemySpawn ());
+		}
 
-		//TODO: add determined wave behavior
-		//Spawns an enemy of a random type, maybe add a given order?
-		int enemyType = Mathf.RoundToInt (Mathf.Clamp (0, Random.value * (enemyPrefabs.Length - 1), enemyPrefabs.Length - 1));
+		if (CanEnemySpawn ()) {			
 
-		GameObject enemy = Instantiate (enemyPrefabs[enemyType]);
-		enemy.GetComponent <EnemyMovement> ().waypoints = waypoints; 
+			//Spawn enemy and assign waypoints
+			GameObject enemy = Instantiate (enemySpawnList [currentEnemyIndex], waypoints [0].transform.position, Quaternion.identity);
+			enemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
+
+			currentEnemyIndex++;
+
+			//Set spawn time of current enemy
+			lastEnemySpawnTime = Time.time;
+		}
+	}
+
+	IEnumerator SpecialEnemySpawn () {
+
+		//Current enemy spawn index
+		int currentSpecialEnemyIndex = 0;
+
+		for (int i = 0; i < specialEnemySpawnList; i++) {
+
+			//Spawn Enemy
+			GameObject specialEnemy = Instantiate (specialEnemySpawnList [currentSpecialEnemyIndex], waypoints [0].transform.position, Quaternion.identity);
+			specialEnemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
+
+			//Increse spawn index
+			currentSpecialEnemyIndex++;
+
+			lastSpecialEnemySpawnTime = Time.time;
+
+			//Pause coroutine and wait for specified amount
+			yield return new WaitForSeconds (specialEnemySpawnInterval);
+		}
+
+		isSpecialEnemySpawnEnabled = false;
 	}
 
 	/// <summary>
 	/// Generates SpawnList for wave
 	/// </summary>
 	/// <returns>The spawn list.</returns>
-	public SortedList GenerateSpawnList() {
+	public SortedList GenerateSpawnList () {
+		ArrayList list = new ArrayList ();
 
-		//TODO GENERATE ALGORITHM EXTREME
+		for (int i = 0; i < waveInfo.GetWaveSize(); i++) {
+			GameObject enemy = enemyPrefabs [0]; 
+
+			list.Add (enemy);
+		}
 
 		//Logistisches Wachstum?
 		//Begrenztes Wachstum?
-		return null;
+		return list;
+	}
+
+	private GameObject GetEnemy() {
+		
 	}
 
 
 	//Generates a list for special enemies which are to spawn immediately
-	public SortedList GenerateSpecialSpawn () {
-		return null;
+	SortedList GenerateSpecialSpawn (ArrayList enemies) {		
+		ArrayList list = enemies;
+
+		return list;
 	}
+
+	bool CanEnemySpawn () {
+		return (enemySpawnList.Count != 0) && (Time.time - lastEnemySpawnTime > enemySpawnInterval);
+	}
+
+	bool CanSpecialEnemySpawn () {
+		return (specialEnemySpawnList.Count != 0) && (Time.time - lastSpecialEnemySpawnTime > specialEnemySpawnInterval) && !isSpecialEnemySpawnEnabled;
+	}
+
+	public bool HasWaveFinished () {
+		return specialEnemySpawnList.Count == 0 && enemySpawnList.Count == 0;
+	}*/
 }
 
-struct WaveInfo {
-
-	public float enemySpawnInterval;
-	public int enemySpawnCounter;
-
-	//Spawn order of enemy types
-	public SortedList spawnOrder;
-	public List<KeyValuePair<int, int>> spawnData;
-
-	public WaveInfo(List<KeyValuePair<int, int>> data, SortedList spawnOrder, float enemySpawnInterval, int enemySpawnCounter) {
-		this.enemySpawnInterval = enemySpawnInterval;
-
-		this.enemySpawnCounter = enemySpawnCounter;
-		spawnData = data;
-		this.spawnOrder = spawnOrder;
-	}
-
-	public int GetEnemySpawnCounter() {
-
-		int enemySpawnCounter;
-
-		foreach (KeyValuePair<int,int> pair in spawnData) {
-			enemySpawnCounter += pair.Value;
-		}
-
-		return enemySpawnCounter;
-	}
-
-}*/
