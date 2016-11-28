@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour {
     private int currentWaypoint = 0;
     private float originalSpeed;
     public float speed;
+    public bool reachedEnd;
 
     // Use this for initialization
     void Start () {
@@ -32,8 +33,8 @@ public class EnemyMovement : MonoBehaviour {
             }
             else
             {
+                reachedEnd = true;
                 Destroy(gameObject);
-
                 GameObject gm = GameObject.Find("GameManager");
                 gm.GetComponent<GameManagerBehavior>().Health -= 1;
             }
