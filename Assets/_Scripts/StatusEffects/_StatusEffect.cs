@@ -6,6 +6,17 @@ public abstract class _StatusEffect{
     protected string name;
     protected GameObject target;
     protected bool destroy = false;
+    protected float lastPushTime;
+    protected float decayTime; //How long it takes until the effect expires.
+
+    public _StatusEffect(string name, GameObject target, float decTime)
+    {
+        lastPushTime = Time.time;
+        this.target = target;
+        this.name = name;
+        this.decayTime = decTime;
+        target.GetComponent<EnemyBehaviour>().AddStatusEffect(this);
+    }
 
     public void TryApply()
     {
@@ -27,6 +38,14 @@ public abstract class _StatusEffect{
     public override string ToString()
     {
         return name;
+    }
+
+    protected void CheckExpire()
+    {
+        if (lastPushTime + decayTime < Time.time)
+        {
+            RemoveEffect();
+        }
     }
 
     protected void RemoveEffect()

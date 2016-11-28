@@ -51,6 +51,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public void AddStatusEffect(_StatusEffect e)
     {
         effects.Add(e);
+        print("Added " + e.ToString() + "!");
     }
 
     public void RemoveEffectByName(string s)

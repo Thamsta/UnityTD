@@ -8,13 +8,15 @@ public class FreezeTowerBehavior : ShootEnemies {
     {
         if(target.gameObject.GetComponent<EnemyBehaviour>().ContainsEffect("Freeze") == null)
         {
-            new Freeze(0.3F, 10, 2.0F, 3.5F, target.gameObject);
+            if (target.gameObject.GetComponent<EnemyBehaviour>().ContainsEffect("FreezeStun") == null)
+            {
+                new Freeze(0.3F, 10, 2.0F, 3.5F, target.gameObject);
+            }
         }
         else
         {
             Freeze f = (Freeze)target.gameObject.GetComponent<EnemyBehaviour>().ContainsEffect("Freeze");
-            f.incrementFreeze();
+            f.IncrementFreeze();
         }
-        
     }
 }

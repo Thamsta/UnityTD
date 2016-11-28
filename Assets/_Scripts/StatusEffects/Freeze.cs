@@ -3,32 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Freeze : _StatusEffect {
-    private float stunDuration;
+    private float freezeDuration;
     private float slow;
     private int limit;
     private int freezeCount = 1;
-    private float lastPushTime;
-    private float decayTime;
 
-    public Freeze(float slow, int limit, float stunDuration, float decTime, GameObject target)
-    {
-        lastPushTime = Time.time;
-        this.target = target;
+    public Freeze(float slow, int limit, float freezeDuration, float decTime, GameObject target) : base("Freeze", target, decTime)
+    { 
         this.slow = slow;
-        this.stunDuration = stunDuration;
+        this.freezeDuration = freezeDuration;
         this.limit = limit;
         decayTime = decTime;
-        name = "Freeze";
-        target.GetComponent<EnemyBehaviour>().AddStatusEffect(this);
+        
     }
 
+    /// <summary>
+    /// Checks if the effect can be applied. Gets called every frame by the enemy it is attached to.
+    /// </summary>
+    /// <returns>can effect be applied</returns>
 	protected override bool CanApplyEffect()
     {
-        if(lastPushTime + decayTime < Time.time)
-        {
-            RemoveEffect();
-        }
-        else if(freezeCount >= limit)
+        CheckExpire();
+        if(freezeCount >= limit)
         {
             return true;
         }
@@ -37,7 +33,7 @@ public class Freeze : _StatusEffect {
 
     protected override void ApplyEffect()
     {
-        //TODO: Apply Stuns
+        new FreezeStun(freezeDuration, target);
         RemoveEffect();
     }
 
@@ -46,8 +42,9 @@ public class Freeze : _StatusEffect {
         return System.Math.Max(0, 1 - (slow * 2 * freezeCount / limit));
     }
 
-    public void incrementFreeze()
+    public void IncrementFreeze()
     {
+        lastPushTime = Time.time;
         freezeCount++;
     }
 }
