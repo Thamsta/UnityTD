@@ -79,7 +79,7 @@ class Wave : MonoBehaviour
         foreach (GameObject obj in list)
         {
             GameObject enemy = Instantiate(obj, waypoints[0].transform.position, Quaternion.identity);
-            enemy.GetComponent<EnemyMovement>().waypoints = waypoints;
+            enemy.GetComponent<EnemyBehaviour>().waypoints = waypoints;
 
             lastSpecialEnemySpawnTime = Time.time;
         }
