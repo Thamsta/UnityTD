@@ -2,118 +2,103 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Wave : MonoBehaviour {
-	/*
+class Wave : MonoBehaviour
+{
+    //Index of this wave
+    public int waveIndex;
 
-	int currentEnemyIndex;
-	int maxEnemyIndex;
+    //Section Index
+    public int currentSectionIndex;
 
-	float lastEnemySpawnTime;
-	float lastSpecialEnemySpawnTime;
+    //Contains all the information about the wave
+    WaveInfo waveInfo;
+    //Array of all sections contained in the wave
+    WaveSection[] sections;
+    //Waypoints on which the enemy is walking along
+    GameObject[] waypoints;
 
-	float specialEnemySpawnInterval;
-	float enemySpawnInterval;
+    //When did the last speical enemy spawn?
+    float lastSpecialEnemySpawnTime;
 
-	bool isSpecialEnemySpawnEnabled;
+    public Wave(int waveIndex, GameObject[] waypoints)
+    {
+        this.waveIndex = waveIndex;
 
-	GameObject[] enemyPrefabs;
-	GameObject[] waypoints;
+        //Get Information about the wave
+        waveInfo = new WaveInfo(waveIndex);
 
-	WaveInfo waveInfo;
+        //Set waypointa
+        this.waypoints = waypoints;
 
-	ArrayList enemySpawnList;
+        //Generates wave sections
+        GenerateWaveSections();
+    }
 
-	/*
-	 * First place sets spawnInterval
-	 * Second place contains enemies.
-	 * /
-	ArrayList specialEnemySpawnList;
+    /// <summary>
+    /// Spawn the next enemy if possible
+    /// </summary>
+    public void SpawnNext()
+    {
+        //If the current wave has not yet finished
+        if (!sections[currentSectionIndex].HasSectionFinished())
+        {
+            //Spawns next enemy in spawn list of given section
+            sections[currentSectionIndex].SpawnNext();
+        }
+        else
+        {
+            //If there are still sections to go through
+            if(!HasWaveFinished())
+            {
+                currentSectionIndex++;
+            }
+        }
+    }
 
-	public Wave () {
-	}
+    /// <summary>
+    /// Generates the sections which compose a wave
+    /// </summary>
+    public void GenerateWaveSections()
+    {
+        //Declare an array of size of the total number of sections
+        sections = new WaveSection[waveInfo.GetNumberOfSections() - 1];
 
-	public void SpawnNext () {
-		
-		if (CanSpecialEnemySpawn ()) {
-			StartCoroutine (SpecialEnemySpawn ());
-		}
+        for (int i = 0; i < sections.Length; i++)
+        {
+            //Generates a new wave section and sets the inidicies for first and last enemy of this section.
+            sections[i] = new WaveSection(new WaveInfo(waveIndex, i));
+        }
+    }
 
-		if (CanEnemySpawn ()) {			
+    /// <summary>
+    /// This function can be used manually to spawn outside of the spawnList
+    /// </summary>
+    /// <param name="obj">The enemies to be spawned</param>
+    public void SpecialEnemySpawn(GameObject[] list)
+    {
+        foreach (GameObject obj in list)
+        {
+            GameObject enemy = Instantiate(obj, waypoints[0].transform.position, Quaternion.identity);
+            enemy.GetComponent<EnemyMovement>().waypoints = waypoints;
 
-			//Spawn enemy and assign waypoints
-			GameObject enemy = Instantiate (enemySpawnList [currentEnemyIndex], waypoints [0].transform.position, Quaternion.identity);
-			enemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
+            lastSpecialEnemySpawnTime = Time.time;
+        }
+    }
 
-			currentEnemyIndex++;
+    //For later use.
+    /*
+    bool CanSpecialEnemySpawn()
+    {
+        return (specialEnemySpawnList.Count != 0) && !isSpecialEnemySpawnEnabled;
+    }*/
 
-			//Set spawn time of current enemy
-			lastEnemySpawnTime = Time.time;
-		}
-	}
-
-	IEnumerator SpecialEnemySpawn () {
-
-		//Current enemy spawn index
-		int currentSpecialEnemyIndex = 0;
-
-		for (int i = 0; i < specialEnemySpawnList; i++) {
-
-			//Spawn Enemy
-			GameObject specialEnemy = Instantiate (specialEnemySpawnList [currentSpecialEnemyIndex], waypoints [0].transform.position, Quaternion.identity);
-			specialEnemy.GetComponent <EnemyMovement> ().waypoints = waypoints;
-
-			//Increse spawn index
-			currentSpecialEnemyIndex++;
-
-			lastSpecialEnemySpawnTime = Time.time;
-
-			//Pause coroutine and wait for specified amount
-			yield return new WaitForSeconds (specialEnemySpawnInterval);
-		}
-
-		isSpecialEnemySpawnEnabled = false;
-	}
-
-	/// <summary>
-	/// Generates SpawnList for wave
-	/// </summary>
-	/// <returns>The spawn list.</returns>
-	public SortedList GenerateSpawnList () {
-		ArrayList list = new ArrayList ();
-
-		for (int i = 0; i < waveInfo.GetWaveSize(); i++) {
-			GameObject enemy = enemyPrefabs [0]; 
-
-			list.Add (enemy);
-		}
-
-		//Logistisches Wachstum?
-		//Begrenztes Wachstum?
-		return list;
-	}
-
-	private GameObject GetEnemy() {
-		
-	}
-
-
-	//Generates a list for special enemies which are to spawn immediately
-	SortedList GenerateSpecialSpawn (ArrayList enemies) {		
-		ArrayList list = enemies;
-
-		return list;
-	}
-
-	bool CanEnemySpawn () {
-		return (enemySpawnList.Count != 0) && (Time.time - lastEnemySpawnTime > enemySpawnInterval);
-	}
-
-	bool CanSpecialEnemySpawn () {
-		return (specialEnemySpawnList.Count != 0) && (Time.time - lastSpecialEnemySpawnTime > specialEnemySpawnInterval) && !isSpecialEnemySpawnEnabled;
-	}
-
-	public bool HasWaveFinished () {
-		return specialEnemySpawnList.Count == 0 && enemySpawnList.Count == 0;
-	}*/
+    /// <summary>
+    /// Checks wheter the whole wave has finished.
+    /// </summary>
+    /// <returns></returns>
+    public bool HasWaveFinished()
+    {
+        //If the last wave has finished then return true otherwise false.
+       return (currentSectionIndex == sections.Length - 1 && sections[currentSectionIndex].HasSectionFinished()) ? true : false;
+    }
 }
-
