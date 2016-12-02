@@ -91,6 +91,68 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &187313485
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -62.07978
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 78.29293
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -102.543755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485407308249252, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227588018415004, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372636860228262, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642481941799854, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 112.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642481941799854, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -55.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642481941799854, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 19.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0dcd665a36283ec4183db60759cba953, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &776127581
 Prefab:
   m_ObjectHideFlags: 0
@@ -128,7 +190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010978597972, guid: 42b5aa1090b5db44282c03b6fea303e4, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010978597972, guid: 42b5aa1090b5db44282c03b6fea303e4, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -202,7 +264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1359368941
 Prefab:
@@ -241,7 +303,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013486682222, guid: 7bb2c27c789a35d458a24723ada1ff92, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1000011933446150, guid: 7bb2c27c789a35d458a24723ada1ff92, type: 2}
       propertyPath: m_IsActive
@@ -303,7 +365,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 1, b: 0.006896496, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -312,7 +374,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -335,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1441282332}
   m_LocalRotation: {x: 0.1499667, y: 0, z: 0, w: 0.98869103}
-  m_LocalPosition: {x: -59.87, y: 28.48, z: -60.67}
+  m_LocalPosition: {x: -42.4, y: 33, z: -18.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
