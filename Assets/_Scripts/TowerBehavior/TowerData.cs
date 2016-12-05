@@ -15,7 +15,7 @@ public class TowerData : MonoBehaviour {
 
     public List<TowerLevel> _levels;
     public Texture2D cursorTexture;
-    private TowerLevel _currentLevel;
+    protected TowerLevel _currentLevel;
 
     void OnEnable()
     {
