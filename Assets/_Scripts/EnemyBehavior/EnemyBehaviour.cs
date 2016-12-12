@@ -75,7 +75,7 @@ public class EnemyBehaviour : MonoBehaviour {
         healthBar.currentHealth -= Mathf.Max(damage, 0);
         if(healthBar.currentHealth <= 0)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
