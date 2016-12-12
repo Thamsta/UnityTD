@@ -23,7 +23,14 @@ public class GameManagerBehavior : MonoBehaviour {
         set
         {
             gold = value;
-            goldLabel.GetComponent<Text>().text = "Gold: " + gold;
+            if (goldLabel != null)
+            {
+                goldLabel.GetComponent<Text>().text = "Gold: " + gold;
+            }
+            else
+            {
+                Debug.Log("GoldLabel not set");
+            }
         }
     }
 
