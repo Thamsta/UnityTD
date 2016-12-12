@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManagerBehavior : MonoBehaviour {
     private readonly float messageShowTime = 1.3f;
@@ -10,6 +11,8 @@ public class GameManagerBehavior : MonoBehaviour {
     private Text messageLabel;
     private Text waveLabel;
     private Text remainLabel;
+    private GameObject gameOverPanel;
+    //private Animator anim;
 
     private float lastMessageUpdate;
 
@@ -43,7 +46,7 @@ public class GameManagerBehavior : MonoBehaviour {
             healthLabel.GetComponent<Text>().text = "Health: " + health;
             if(health <= 0)
             {
-                //TODO: Game over;
+                GameOver();
             }
         }
     }
@@ -51,18 +54,20 @@ public class GameManagerBehavior : MonoBehaviour {
     void Start()
     {
         InitialiseLabels();
+        //anim = GetComponent<Animator>();
+        gameOverPanel.SetActive(false);
         Health = 5;
         Gold = 10000;
-
     }
 
     private void InitialiseLabels()
     {
-        goldLabel = (Text)GameObject.Find("Canvas/GoldLabel").GetComponent("Text");
-        healthLabel = (Text)GameObject.Find("Canvas/HealthLabel").GetComponent("Text");
-        waveLabel = (Text)GameObject.Find("Canvas/WaveLabel").GetComponent("Text");
-        remainLabel = (Text)GameObject.Find("Canvas/RemainLabel").GetComponent("Text");
-        messageLabel = (Text)GameObject.Find("Canvas/TowerSelectPanel/Warning").GetComponent("Text");
+        goldLabel = (Text)GameObject.Find("GameCanvas/GoldLabel").GetComponent("Text");
+        healthLabel = (Text)GameObject.Find("GameCanvas/HealthLabel").GetComponent("Text");
+        waveLabel = (Text)GameObject.Find("GameCanvas/WaveLabel").GetComponent("Text");
+        remainLabel = (Text)GameObject.Find("GameCanvas/RemainLabel").GetComponent("Text");
+        messageLabel = (Text)GameObject.Find("GameCanvas/TowerSelectPanel/Warning").GetComponent("Text");
+        gameOverPanel = GameObject.Find("GameCanvas/GameOverPanel");
     }
 
     void Update()
@@ -73,10 +78,26 @@ public class GameManagerBehavior : MonoBehaviour {
         }
     }
 
+    void GameOver()
+    {
+        //anim.SetTrigger("GameOver");
+        gameOverPanel.SetActive(true);
+    }
+
     void ClearMessageLabel()
     {
         //TODO: fade out the text
         SetMessageLabelText("");
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void SetMessageLabelText(string newText)
@@ -92,6 +113,10 @@ public class GameManagerBehavior : MonoBehaviour {
 
     public void SetRemainingEnemies(int remain)
     {
+        if(remainLabel == null)
+        {
+            remainLabel = (Text)GameObject.Find("GameCanvas/RemainLabel").GetComponent("Text");
+        }
         remainLabel.GetComponent<Text>().text = "Remaining enemies: " + remain;
     }
 
