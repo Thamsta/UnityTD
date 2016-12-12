@@ -67,14 +67,8 @@ public abstract class BulletBehavior : MonoBehaviour {
     /// <param name="otherTarget">The target which should recieve damage</param>
     protected virtual void DealDamage(GameObject otherTarget)
     {
-        Transform healthBarTransform = otherTarget.transform.FindChild("HealthBar");
-        HealthBar healthBar =
-            healthBarTransform.gameObject.GetComponent<HealthBar>();
-        healthBar.currentHealth -= Mathf.Max(damage, 0);
-        if (healthBar.currentHealth <= 0)
-        {
-            Destroy(otherTarget);
-        }
+        EnemyBehaviour targetBehaviour =otherTarget.GetComponent<EnemyBehaviour>();
+        targetBehaviour.receiveDamage(damage);
     }
 
     /// <summary>

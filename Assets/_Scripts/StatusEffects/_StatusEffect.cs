@@ -28,7 +28,16 @@ public abstract class _StatusEffect{
 
     protected abstract void ApplyEffect();
 
-    protected abstract bool CanApplyEffect();
+    protected virtual bool CanApplyEffect()
+    {
+
+        if (CheckExpire())
+        {
+            return false;
+        }
+        return true;
+
+    }
 
     public virtual float MovementScale()
     {
@@ -40,12 +49,14 @@ public abstract class _StatusEffect{
         return name;
     }
 
-    protected void CheckExpire()
+    protected bool CheckExpire()
     {
         if (lastPushTime + decayTime < Time.time)
         {
             RemoveEffect();
+            return true;
         }
+        return false;
     }
 
     protected void RemoveEffect()

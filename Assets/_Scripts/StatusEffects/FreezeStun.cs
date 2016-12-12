@@ -11,12 +11,7 @@ public class FreezeStun : _StatusEffect
 
     protected override void ApplyEffect() { } 
 
-    protected override bool CanApplyEffect()
-    {
-        CheckExpire();
-        return false;
-    }
-
+                         
     public override float MovementScale()
     {
         return 0.0F;

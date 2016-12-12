@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    /// <returns>Relative life in percent</returns>
+     /// <returns>Relative life in percent</returns>
     public float RelativeLife()
     {
         return currentHealth / maxHealth * 100;

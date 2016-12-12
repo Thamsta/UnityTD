@@ -20,8 +20,8 @@ public class EnemyBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        foreach (_StatusEffect e in effects)
-        {
+        foreach (_StatusEffect e in effects.ToArray())
+        { 
             e.TryApply();
         }
         ScaleSpeed();
@@ -64,6 +64,18 @@ public class EnemyBehaviour : MonoBehaviour {
                 ScaleSpeed();
                 break;
             }
+        }
+    }
+
+    public void receiveDamage(int damage)
+    {
+        Transform healthBarTransform = transform.FindChild("HealthBar");
+        HealthBar healthBar =
+            healthBarTransform.gameObject.GetComponent<HealthBar>();
+        healthBar.currentHealth -= Mathf.Max(damage, 0);
+        if(healthBar.currentHealth <= 0)
+        {
+            Destroy(this);
         }
     }
 
