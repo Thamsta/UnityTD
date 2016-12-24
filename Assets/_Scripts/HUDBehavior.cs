@@ -10,6 +10,11 @@ public class HUDBehavior : MonoBehaviour {
         get { return activePlatform; }
         set
         {
+            if(activePlatform != null)
+            {
+                activePlatform.GetComponent<Selectable>().deselect();
+            }
+
             activePlatform = value;
             if (activePlatform == null)
             {
@@ -18,7 +23,7 @@ public class HUDBehavior : MonoBehaviour {
             }
             else
             {
-                
+                activePlatform.GetComponent<Selectable>().select();
                 gameObject.SetActive(true);
                 Move();
                 //set the towerselector inactive

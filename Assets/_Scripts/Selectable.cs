@@ -19,6 +19,6 @@ public class Selectable : MonoBehaviour {
 
     public void deselect()
     {
-        GetComponent<Renderer>().material = selected;
+        GetComponent<Renderer>().material = original;
     }
 }

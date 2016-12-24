@@ -40,14 +40,15 @@ public class SpawnEnemy : MonoBehaviour {
 
 	void Update () {
 		//Last enemy just died and wave has ended
-		if (CountEnemies () == 0 && enemiesToSpawn == 0) {
+		if (CountEnemies () == 0 && enemiesToSpawn == 0 && gameManager.State != GameManagerBehavior.GameState.GameOver) {
 			if (lastEnemyCounter != 0) {
 
 				//When did the wave end?
 				lastWaveEndTime = Time.time;
 
-				//sends information to GUIp
+				//sends information to the gameManager
 				gameManager.SetRemainingEnemies (enemySpawnCounter);
+                gameManager.Wave += 1;
 				Debug.Log ("WAVE CLEARED!");
 			} 
 

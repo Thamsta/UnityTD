@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000012835527196}
-  - component: {fileID: 114000014232199588}
+  - component: {fileID: 114972393875138898}
   m_Layer: 0
   m_Name: _GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,13 +34,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011745973538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.363504, y: -1.3538609, z: -2.5967362}
+  m_LocalPosition: {x: -10.414, y: -2.9705505, z: -2.5967362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114000014232199588
+--- !u!114 &114972393875138898
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,8 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2def9b76aa6bf8b4ebcabdb85bb1e025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldLabel: {fileID: 0}
-  healthLabel: {fileID: 0}
-  messageLabel: {fileID: 0}
-  waveLabel: {fileID: 0}
-  remainLabel: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  pausePanel: {fileID: 0}

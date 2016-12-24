@@ -6,20 +6,59 @@ using UnityEngine.SceneManagement;
 public class GameManagerBehavior : MonoBehaviour {
     private readonly float messageShowTime = 1.3f;
 
+    //HUD-Elements
     private Text goldLabel;
     private Text healthLabel;
     private Text messageLabel;
     private Text waveLabel;
     private Text remainLabel;
-    private GameObject gameOverPanel;
-    //private Animator anim;
 
     private float lastMessageUpdate;
+
+    //Menus 
+    public GameObject gameOverPanel;
+    public GameObject pausePanel;
+    
+    //Some game state stuff
+    public enum GameState { Running, Paused, GameOver};
+    private GameState state;
+    public GameState State
+    {
+        get { return state; }
+        set
+        {
+            switch(value)
+            {
+                case GameState.Running:
+                    {
+                        state = value;
+                        Run();
+                        break;
+                    }
+                case GameState.Paused:
+                    {
+                        if(state != GameState.GameOver)
+                        {
+                            state = value;
+                            Pause();
+                        }
+                        else { Debug.Log("can't go from gameover to pause"); }                       
+                        break;
+                    }
+                case GameState.GameOver:
+                    {
+                        state = value;
+                        GameOver();
+                        break;
+                    }
+            }
+        }
+    }
+    private bool fast;
 
     private int gold;
     private int health;
 
-           
     public int Gold
     {
         get { return gold; }
@@ -36,7 +75,6 @@ public class GameManagerBehavior : MonoBehaviour {
             }
         }
     }
-
     public int Health
     {
         get { return health; }
@@ -46,7 +84,25 @@ public class GameManagerBehavior : MonoBehaviour {
             healthLabel.GetComponent<Text>().text = "Health: " + health;
             if(health <= 0)
             {
-                GameOver();
+                State = GameState.GameOver;
+            }
+        }
+    }
+
+    private int wave;
+    public int Wave
+    {
+        get { return wave; }
+        set
+        {
+            wave = value;
+            if (wave == 0)
+            {
+                waveLabel.GetComponent<Text>().text = "something texty";
+            }
+            else
+            {
+                waveLabel.GetComponent<Text>().text = "Wave: " + wave;
             }
         }
     }
@@ -56,8 +112,16 @@ public class GameManagerBehavior : MonoBehaviour {
         InitialiseLabels();
         //anim = GetComponent<Animator>();
         gameOverPanel.SetActive(false);
+        pausePanel.SetActive(false);
+
         Health = 5;
         Gold = 10000;
+        Wave = 1;
+
+        fast = false;
+
+        //TODO: reset mouse
+        State = GameState.Running;
     }
 
     private void InitialiseLabels()
@@ -67,7 +131,8 @@ public class GameManagerBehavior : MonoBehaviour {
         waveLabel = (Text)GameObject.Find("GameCanvas/WaveLabel").GetComponent("Text");
         remainLabel = (Text)GameObject.Find("GameCanvas/RemainLabel").GetComponent("Text");
         messageLabel = (Text)GameObject.Find("GameCanvas/TowerSelectPanel/Warning").GetComponent("Text");
-        gameOverPanel = GameObject.Find("GameCanvas/GameOverPanel");
+        //gameOverPanel = GameObject.Find("GameCanvas/GameOverPanel"); public atm
+        //pausePanel = GameObject.Find("GameCanvas/PausePanel");
     }
 
     void Update()
@@ -76,18 +141,52 @@ public class GameManagerBehavior : MonoBehaviour {
         {
             ClearMessageLabel();
         }
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            if(State == GameState.GameOver)
+            {
+                LoadMainMenu();
+            }
+            else
+            {
+            TogglePauseState();
+            }
+        }
     }
 
+    void Run()
+    {
+        pausePanel.SetActive(false);
+        Time.timeScale = 1.0f;
+    }
+
+    /// <summary>
+    /// Implementation for the Game Over state
+    /// </summary>
     void GameOver()
     {
-        //anim.SetTrigger("GameOver");
         gameOverPanel.SetActive(true);
     }
 
-    void ClearMessageLabel()
+    void TogglePauseState()
     {
-        //TODO: fade out the text
-        SetMessageLabelText("");
+        if(State == GameState.Paused)
+        {
+            State = GameState.Running;
+        }
+        else
+        {
+            State = GameState.Paused;
+        }
+    }
+
+    /// <summary>
+    /// Implementation for the Pause state
+    /// </summary>
+    void Pause()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     public void RestartLevel()
@@ -98,6 +197,33 @@ public class GameManagerBehavior : MonoBehaviour {
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Resume()
+    {
+        State = GameState.Running;
+    }
+
+    public void ToggleFastMode(Button button)
+    {
+        if (fast)
+        {
+            fast = false;
+            button.image.color = Color.white;
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            fast = true;
+            button.image.color = new Color(0.7f,0.1f,0.1f);
+            Time.timeScale = 3.0f;
+        }
+    }
+
+    void ClearMessageLabel()
+    {
+        //TODO: fade out the text
+        SetMessageLabelText("");
     }
 
     public void SetMessageLabelText(string newText)
