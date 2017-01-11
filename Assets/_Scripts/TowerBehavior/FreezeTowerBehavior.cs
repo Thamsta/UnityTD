@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FreezeTowerBehavior : ShootEnemies {
+    LaserBehaviour laser;
 
     protected override void Shoot(Collider target)
     {
@@ -18,5 +19,17 @@ public class FreezeTowerBehavior : ShootEnemies {
             Freeze f = (Freeze)target.gameObject.GetComponent<EnemyBehaviour>().ContainsEffect("Freeze");
             f.IncrementFreeze();
         }
+    }
+
+    protected override GameObject ClosestTarget()
+    {
+        if(laser == null)
+        {
+            laser = GetComponent<LaserBehaviour>();
+        }
+        GameObject activeTarget = base.ClosestTarget();    
+        laser.SetTarget(activeTarget);
+        return activeTarget;
+
     }
 }

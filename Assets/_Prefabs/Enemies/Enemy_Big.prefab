@@ -968,7 +968,7 @@ Transform:
   m_GameObject: {fileID: 1516673179739234}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 66.36772, y: 0, z: 81.87266}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4070230779990256}
   - {fileID: 4931993164368978}
@@ -1749,6 +1749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   speed: 20
+  reachedEnd: 0
 --- !u!136 &136295134487177052
 CapsuleCollider:
   m_ObjectHideFlags: 1

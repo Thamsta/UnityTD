@@ -8,7 +8,8 @@ public class ShootEnemies : MonoBehaviour {
     private TowerData towerData;
 
 
-    void Start () {
+    void Start ()
+    {
         enemiesInRange = new List<GameObject>();
         lastShotTime = Time.time;
         towerData = gameObject.GetComponentInParent<TowerData>();
@@ -16,6 +17,22 @@ public class ShootEnemies : MonoBehaviour {
 
 
     void Update()
+    {
+        GameObject target = ClosestTarget();
+
+        
+
+        if (target != null)
+        {
+            if (Time.time - lastShotTime > towerData.CurrentLevel._fireRate)
+            {
+                Shoot(target.GetComponent<Collider>());
+                lastShotTime = Time.time;
+            }
+        }
+    }
+
+    protected virtual GameObject ClosestTarget()
     {
         GameObject target = null;
 
@@ -29,17 +46,8 @@ public class ShootEnemies : MonoBehaviour {
                 minimalEnemyDistance = distanceToGoal;
             }
         }
-
-        if (target != null)
-        {
-            if (Time.time - lastShotTime > towerData.CurrentLevel._fireRate)
-            {
-                Shoot(target.GetComponent<Collider>());
-                lastShotTime = Time.time;
-            }
-        }
+        return target;
     }
-
     protected virtual void Shoot(Collider target)
     {
             GameObject bulletPrefab = towerData.CurrentLevel._bullet;
