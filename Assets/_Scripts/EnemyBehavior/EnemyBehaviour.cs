@@ -157,7 +157,7 @@ public class EnemyBehaviour : MonoBehaviour {
         //TODO: Rotate HealthBar appropiately
         
         //print(mesh);
-        transform.rotation = Quaternion.LookRotation(new Vector3(bufferZ,0,-bufferX), Vector3.up);
+        transform.rotation = Quaternion.LookRotation(new Vector3(bufferZ,0,bufferX), Vector3.up);
 
         Transform healthMesh = transform.Find("HealthBar");
         Quaternion bufferRot = Quaternion.LookRotation(-Camera.main.transform.forward);

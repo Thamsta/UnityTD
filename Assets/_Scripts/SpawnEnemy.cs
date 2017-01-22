@@ -47,7 +47,7 @@ public class SpawnEnemy : MonoBehaviour {
 				lastWaveEndTime = Time.time;
 
 				//sends information to the gameManager
-				gameManager.SetRemainingEnemies (enemySpawnCounter);
+				gameManager.SetRemainingEnemies(enemySpawnCounter);
                 gameManager.Wave += 1;
 				Debug.Log ("WAVE CLEARED!");
 			} 
@@ -58,7 +58,7 @@ public class SpawnEnemy : MonoBehaviour {
 			}
 		}
 
-		//When the wave is ongoing an enemies have to be spawned
+        //When the wave is ongoing an enemies have to be spawned
 		if (enemiesToSpawn > 0 && Time.time - lastWaveEndTime > waveSpawnInterval) {
 			//Spawn enemies in a set interval
 			if (Time.time - lastEnemySpawnTime > enemySpawnInterval) {

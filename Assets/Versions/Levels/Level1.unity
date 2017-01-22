@@ -726,7 +726,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &845192139
 GameObject:
@@ -830,9 +830,9 @@ MonoBehaviour:
   - {fileID: 845192139}
   - {fileID: 2115253628}
   enemyPrefabs:
-  - {fileID: 1000011041994082, guid: f11e29079fa2e3e4c8c2f154e0366442, type: 2}
-  waveSpawnInterval: 3
-  enemySpawnInterval: 1
+  - {fileID: 1677653045186232, guid: 4b3bc936b5a8773409c8433342313784, type: 2}
+  waveSpawnInterval: 5
+  enemySpawnInterval: 2
   enemySpawnCounter: 10
   enemiesToSpawn: 0
   lastEnemySpawnTime: 0
@@ -876,7 +876,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4853327789860954, guid: d147774d4cb8ad040a32c4326365f972, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224668672408587044, guid: d147774d4cb8ad040a32c4326365f972,
         type: 2}
@@ -1451,7 +1451,7 @@ Transform:
   - {fileID: 1438694330}
   - {fileID: 1712476419}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1712476418
 Prefab:
@@ -1710,7 +1710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1966991829
 Prefab:
