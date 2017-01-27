@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
     public GameObject[] pages;
     public GameObject levelHud;
+    private int activePage;
      
-    //TODO: linked-list-like implementation for level pages? functions to check whether there's a previous/next level page so buttons can be properly dis/enabled - and a back to menu button, left/right button menu steering
     void Update()
     {
         if(Input.GetKey("escape"))
@@ -22,30 +23,58 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(index);
     }
 
-    public void SetActivePage(string page)
-    {
-        foreach(GameObject g in pages)
-        {
-            if(g.name == page)
-            {
-                g.SetActive(true);
-                levelHud.SetActive(g.name.Contains("Level"));
-            }
-            else
-            {
-                g.SetActive(false);
-            }
-        }
-    }
-
     public void SetActivePage(int index)
     {
+        activePage = index;
         foreach (GameObject g in pages)
         {
             g.SetActive(false);
         }
         pages[index].SetActive(true);
-        levelHud.SetActive(pages[index].name.Contains("Level"));
+        levelHud.SetActive(IsLevel(pages[index]));
+        SetButtons();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="activePage">The index of the current active Page</param>
+    void SetButtons()
+    {
+        Button nb = levelHud.transform.Find("Next").GetComponent<Button>();
+        Button pb = levelHud.transform.Find("Previous").GetComponent<Button>();
+
+        if(pages.Length - 1 > activePage)
+        {
+            nb.interactable = IsLevel(pages[activePage + 1]);
+        }
+        else
+        {
+            nb.interactable = false;
+        }
+        if(activePage > 0)
+        {
+            pb.interactable = IsLevel(pages[activePage - 1]);
+        }
+        else
+        {
+            pb.interactable = false;
+        }
+    }
+
+    public void SetNextPage()
+    {
+        SetActivePage(activePage + 1);
+    }
+
+    public void SetPreviousPage()
+    {
+        SetActivePage(activePage - 1);
+    }
+
+    bool IsLevel(GameObject page)
+    {
+        return page.name.Contains("Level");
     }
 
     public void Quit()

@@ -228,8 +228,15 @@ public class GameManagerBehavior : MonoBehaviour {
 
     public void SetMessageLabelText(string newText)
     {
+        if(messageLabel != null)
+        {
         messageLabel.GetComponent<Text>().text = newText;
         lastMessageUpdate = Time.time;
+        }else
+        {
+            print("messageLabel not Set");
+        }
+        
     }
 
     public void SetWaveLabel(int wave)
