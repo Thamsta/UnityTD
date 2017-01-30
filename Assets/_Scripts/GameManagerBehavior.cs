@@ -91,24 +91,6 @@ public class GameManagerBehavior : MonoBehaviour {
         }
     }
 
-    private int wave;
-    public int Wave
-    {
-        get { return wave; }
-        set
-        {
-            wave = value;
-            if (wave == 0)
-            {
-                waveLabel.GetComponent<Text>().text = "something texty";
-            }
-            else
-            {
-                waveLabel.GetComponent<Text>().text = "Wave: " + wave;
-            }
-        }
-    }
-
     void Start()
     {
         InitialiseLabels();
@@ -118,7 +100,6 @@ public class GameManagerBehavior : MonoBehaviour {
 
         Health = 5;
         Gold = 10000;
-        Wave = 1;
 
         fast = false;
 

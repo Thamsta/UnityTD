@@ -48,20 +48,25 @@ public class ShootEnemies : MonoBehaviour {
         }
         return target;
     }
+
     protected virtual void Shoot(Collider target)
     {
-            GameObject bulletPrefab = towerData.CurrentLevel._bullet;
+        GameObject bulletPrefab = towerData.CurrentLevel._bullet;
 
-            Vector3 startPosition = gameObject.transform.position;
-            Vector3 targetPosition = target.transform.position;
-            startPosition.y = bulletPrefab.transform.position.y + 10;
-            targetPosition.y = bulletPrefab.transform.position.y;
-            GameObject newBullet = Instantiate(bulletPrefab);
-            newBullet.transform.position = startPosition;
-            BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
-            bulletComp.target = target.gameObject;
-            bulletComp.startPosition = startPosition;
-            bulletComp.targetPosition = targetPosition;
+        Vector3 startPosition = gameObject.transform.position;
+        Vector3 targetPosition = target.transform.position;
+
+        startPosition.y = bulletPrefab.transform.position.y + 10;
+        targetPosition.y = bulletPrefab.transform.position.y;
+
+        GameObject newBullet = Instantiate(bulletPrefab);
+        newBullet.transform.position = startPosition;
+
+        BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
+        bulletComp.target = target.gameObject;
+        bulletComp.startPosition = startPosition;
+        bulletComp.targetPosition = targetPosition;
+        bulletComp.damage = towerData.CurrentLevel._damage;
     }
 
     void OnEnemyDestroy(GameObject enemy)

@@ -9,6 +9,7 @@ public class TowerLevel
     public GameObject visualization;
     public GameObject _bullet;
     public float _fireRate;
+    public int _damage;
 }
 
 public class TowerData : MonoBehaviour {

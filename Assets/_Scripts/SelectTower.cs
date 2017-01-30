@@ -8,6 +8,7 @@ public class SelectTower : MonoBehaviour
     private GameObject activeTower;
     public GameObject onTowerHUD;
 
+    //selected Tower from the "shop"
     public GameObject ActiveTower
     {
         get { return activeTower; }

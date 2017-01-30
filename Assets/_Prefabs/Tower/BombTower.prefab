@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4000010544886668}
   - component: {fileID: 114000010487114880}
   - component: {fileID: 136000011287327300}
+  - component: {fileID: 114530304933195020}
   m_Layer: 2
   m_Name: Tower_2_0
   m_TagString: Untagged
@@ -188,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 1000012133046940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013947855396}
   - {fileID: 4000012500862008}
@@ -215,8 +216,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010257860140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.0256, y: 0, z: 14.862524}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 107.17653, y: 0.025014877, z: 62.03088}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 4000010544886668}
   - {fileID: 4000012193896822}
@@ -245,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 1000011229900580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.131, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4000012056287548}
   - {fileID: 4000013274196024}
@@ -260,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 1000012163307872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.002, y: 0.128, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4000014294006230}
   - {fileID: 4000010706668584}
@@ -596,15 +597,30 @@ MonoBehaviour:
     visualization: {fileID: 1000012133046940}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
     _fireRate: 2
+    _damage: 25
   - cost: 150
     visualization: {fileID: 1000012163307872}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
     _fireRate: 1.7
+    _damage: 50
   - cost: 200
     visualization: {fileID: 1000011229900580}
     _bullet: {fileID: 1902548499294792, guid: f6acaac61ffa3944bb7fd3dbd4330a6f, type: 2}
     _fireRate: 1.2
+    _damage: 100
   cursorTexture: {fileID: 2800000, guid: c184fcace955c834fbc02abd8047ad12, type: 3}
+--- !u!114 &114530304933195020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012133046940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e60109d974badf419c04de61a41ced6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m: {fileID: 0}
 --- !u!136 &136000010927162910
 CapsuleCollider:
   m_ObjectHideFlags: 1
