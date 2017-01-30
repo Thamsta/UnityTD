@@ -13,7 +13,7 @@ public static class WaveInfo {
 
         int numberOfSections = Config["data"][GetWaveIndexString(waveIndex)]["Sections"].AsInt;
 
-        Debug.Log(numberOfSections);
+        Debug.Log("Number of sections " + numberOfSections);
 
         //Here the final list is going to be stored
         SortedList<int, KeyValuePair<int, int>[]> generatedJSONList = new SortedList<int, KeyValuePair<int, int>[]>();
@@ -37,8 +37,10 @@ public static class WaveInfo {
                     pairList.Add(pair);
                 }
 
+                Debug.Log(pairList);
+
                 //Convert ArrayList into Array to fit into SortedList
-                KeyValuePair<int, int>[] sectionList = (KeyValuePair < int, int>[])pairList.ToArray(typeof( KeyValuePair<int, int>[]));
+                KeyValuePair<int, int>[] sectionList = (KeyValuePair<int,int>[])pairList.ToArray(typeof( KeyValuePair<int, int>[]));
 
                 //Section is put into final list
                 generatedJSONList.Add(sec, sectionList);
@@ -55,6 +57,11 @@ public static class WaveInfo {
                 //Section is put into final list
                 generatedJSONList.Add(sec, sectionList);
             }
+        }
+
+        foreach(int i in generatedJSONList.Keys)
+        {
+            Debug.Log(i + " " + generatedJSONList[i]);
         }
 
         return generatedJSONList;
