@@ -37,6 +37,7 @@ public class SpawnEnemy : MonoBehaviour {
 
 		enemiesToSpawn = 0;
 		gameManager.SetRemainingEnemies (enemySpawnCounter);
+
 	}
 
 	void Update () {
