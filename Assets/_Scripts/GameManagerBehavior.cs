@@ -275,4 +275,9 @@ public class GameManagerBehavior : MonoBehaviour {
         }
             SetRemainingEnemies(n - 1);
     }
+
+    public void SetWaveButton()
+    {
+
+    }
 }
