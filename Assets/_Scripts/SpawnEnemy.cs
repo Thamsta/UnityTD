@@ -8,58 +8,60 @@ public class SpawnEnemy : MonoBehaviour {
 	public GameObject[] enemyPrefabs;
 
 	//Time between wave spawn
-	public float waveSpawnInterval;
 	public float enemySpawnInterval;
 
 	public int enemySpawnCounter;
-	public int enemiesToSpawn;
-	public float lastEnemySpawnTime;
+	private int enemiesToSpawn;
+	private float lastEnemySpawnTime;
 
-	public int lastEnemyCounter;
-	public float lastWaveEndTime;
+	private int lastEnemyCounter;
+
+    private bool waveActive;
 
 	Wave wave;
 
-	public int waveCounter;
+	private int waveCounter;
 
 	private GameManagerBehavior gameManager;
 
 
 	void Start () {
-		gameManager = GameObject.Find ("GameManager").GetComponent<GameManagerBehavior> ();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior> ();
 
 		lastEnemyCounter = 0;
-		lastWaveEndTime = 0;
 		lastEnemySpawnTime = 0;
 
 		waveCounter = 0;
 
-		enemiesToSpawn = enemySpawnCounter;
+        waveActive = false;
+
+		enemiesToSpawn = 0;
 		gameManager.SetRemainingEnemies (enemySpawnCounter);
 	}
 
 	void Update () {
 		//Last enemy just died and wave has ended
-		if (CountEnemies () == 0 && enemiesToSpawn == 0 && gameManager.State != GameManagerBehavior.GameState.GameOver) {
-			if (lastEnemyCounter != 0) {
-
-				//When did the wave end?
-				lastWaveEndTime = Time.time;
+		if (CountEnemies () == 0 && enemiesToSpawn == 0 && gameManager.State == GameManagerBehavior.GameState.Running) {
+            //Moment when in the current frame are no enemies and in the frame before were
+            if (lastEnemyCounter != 0) {
 
 				//sends information to the gameManager
 				gameManager.SetRemainingEnemies(enemySpawnCounter);
-                gameManager.Wave += 1;
+                gameManager.SetWaveButton();
+                waveActive = false;
 				Debug.Log ("WAVE CLEARED!");
 			} 
 
-			if (Time.time - lastWaveEndTime > waveSpawnInterval) {            
-
+            //Next Wave Implementation
+			if (waveActive) {
 				enemiesToSpawn = enemySpawnCounter;
+                waveCounter++;
+                gameManager.SetWaveLabel(waveCounter);
 			}
 		}
 
         //When the wave is ongoing an enemies have to be spawned
-		if (enemiesToSpawn > 0 && Time.time - lastWaveEndTime > waveSpawnInterval) {
+		if (enemiesToSpawn > 0 && waveActive) {
 			//Spawn enemies in a set interval
 			if (Time.time - lastEnemySpawnTime > enemySpawnInterval) {
 				Spawn ();
@@ -87,4 +89,9 @@ public class SpawnEnemy : MonoBehaviour {
 	public int CountEnemies () {
 		return GameObject.FindGameObjectsWithTag ("Enemy").GetLength (0);
 	}
+
+    public void NextWave()
+    {
+        waveActive = true;
+    }
 }
