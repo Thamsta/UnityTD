@@ -12,12 +12,12 @@ public class Selectable : MonoBehaviour {
         original = GetComponent<Renderer>().material;
     }
 
-    public void select()
+    public void Select()
     {
         GetComponent<Renderer>().material = selected;
     }
 
-    public void deselect()
+    public void Deselect()
     {
         GetComponent<Renderer>().material = original;
     }

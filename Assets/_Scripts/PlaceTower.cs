@@ -2,12 +2,14 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System;
 
 public class PlaceTower : MonoBehaviour {
 
 
     private SelectTower _selectTower;
     private GameObject _tower;
+    private GameObject _previewTower;
     private GameManagerBehavior _gameManager;
     private HUDBehavior towerHUD;
 
@@ -16,6 +18,14 @@ public class PlaceTower : MonoBehaviour {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
         _selectTower = GameObject.Find("TowerSelectPanel").GetComponent<SelectTower>();
         towerHUD = GameObject.Find("OnTowerHUD").GetComponent<HUDBehavior>();
+    }
+
+    public void RemoveRangeIndicator()
+    {
+        if(_tower != null)
+        {
+            TowerUtil.ShowRange(_tower.GetComponent<TowerData>().GetActiveTower(), false);
+        }
     }
 
     void OnMouseUp()
@@ -33,7 +43,33 @@ public class PlaceTower : MonoBehaviour {
             else
             {
                 towerHUD.ActivePlatform = gameObject;
+                TowerUtil.ShowRange(_tower.GetComponent<TowerData>().GetActiveTower(), true);
             }
+        }
+    }
+    
+    void OnMouseEnter()
+    {
+        if(_tower == null && _selectTower.ActiveTower != null)
+        {
+            _previewTower = Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
+            TowerUtil.ShowRange(_previewTower.GetComponent<TowerData>().GetActiveTower(), true);
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if(_previewTower != null)
+        {
+            Destroy(_previewTower);
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if((_previewTower != null && _selectTower.ActiveTower == null)|| _tower != null)
+        {
+            Destroy(_previewTower);
         }
     }
 
@@ -41,8 +77,10 @@ public class PlaceTower : MonoBehaviour {
     {
         if (CanUpgradeTower())
         {
+            TowerUtil.ShowRange(_tower.GetComponent<TowerData>().GetActiveTower(), false);
             _tower.GetComponent<TowerData>().increaseLevel();
             _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
+            TowerUtil.ShowRange(_tower.GetComponent<TowerData>().GetActiveTower(), true);
         }
         else
         {

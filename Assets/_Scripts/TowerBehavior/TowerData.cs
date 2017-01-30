@@ -70,4 +70,13 @@ public class TowerData : MonoBehaviour {
             CurrentLevel = _levels[currentLevelIndex + 1];
         }
     }
+
+    /// <summary>
+    /// Returns the current tower GameObject
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetActiveTower()
+    {
+        return _currentLevel.visualization;
+    }
 }

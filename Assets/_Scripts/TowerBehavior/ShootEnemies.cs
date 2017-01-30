@@ -15,7 +15,6 @@ public class ShootEnemies : MonoBehaviour {
         towerData = gameObject.GetComponentInParent<TowerData>();
     }
 
-
     void Update()
     {
         GameObject target = ClosestTarget();

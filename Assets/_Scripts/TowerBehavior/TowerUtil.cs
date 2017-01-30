@@ -2,23 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerUtil : MonoBehaviour {
+public static class TowerUtil{
 
-	// Use this for initialization
-	void Start () {
-        ShowRange();
-	}
-
-    public void ShowRange()
+    public static void ShowRange(GameObject tower, bool show)
     {
-        float r = GetComponent<CapsuleCollider>().radius;
-        Material newMat = Resources.Load("RangeIndicator", typeof(Material)) as Material;
+        if (show)
+        {
+            float r = tower.GetComponent<CapsuleCollider>().radius;
+            Material newMat = Resources.Load("RangePreview", typeof(Material)) as Material;
 
-        GameObject range = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        range.transform.localScale = new Vector3(2 * r, 0.000001f, 2 * r);
-        range.GetComponent<Renderer>().material = newMat;
-        range.layer = LayerMask.NameToLayer("Ignore Raycast");
+            GameObject range = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            range.name = "range";
+            range.transform.localScale = new Vector3(2 * r, 0.000001f, 2 * r);
+            Vector3 locPos = range.transform.localPosition;
+            locPos = tower.transform.InverseTransformPoint(0.0f, 0.1f, 0.0f);
+            range.transform.localPosition = new Vector3(0.0f, locPos.y ,0.0f);
+            range.GetComponent<Renderer>().material = newMat;
+            range.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-        range.transform.SetParent(gameObject.transform, false);
+            range.transform.SetParent(tower.transform, false);
+        }
+        else
+        {
+            GameObject range = tower.transform.Find("range").gameObject;
+            Object.Destroy(range);
+        }
     }
 }

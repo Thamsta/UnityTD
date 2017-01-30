@@ -12,7 +12,8 @@ public class HUDBehavior : MonoBehaviour {
         {
             if(activePlatform != null)
             {
-                activePlatform.GetComponent<Selectable>().deselect();
+                activePlatform.GetComponent<Selectable>().Deselect();
+                activePlatform.GetComponent<PlaceTower>().RemoveRangeIndicator();
             }
 
             activePlatform = value;
@@ -23,7 +24,7 @@ public class HUDBehavior : MonoBehaviour {
             }
             else
             {
-                activePlatform.GetComponent<Selectable>().select();
+                activePlatform.GetComponent<Selectable>().Select();
                 gameObject.SetActive(true);
                 Move();
                 //set the towerselector inactive
