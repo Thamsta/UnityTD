@@ -13,6 +13,8 @@ public class GameManagerBehavior : MonoBehaviour {
     private Text waveLabel;
     private Text remainLabel;
 
+    public GameObject nextWaveButton;
+
     private float lastMessageUpdate;
 
     //Menus 
@@ -236,7 +238,6 @@ public class GameManagerBehavior : MonoBehaviour {
         {
             print("messageLabel not Set");
         }
-        
     }
 
     public void SetWaveLabel(int wave)
@@ -278,6 +279,6 @@ public class GameManagerBehavior : MonoBehaviour {
 
     public void SetWaveButton()
     {
-
+        nextWaveButton.SetActive(true);
     }
 }
