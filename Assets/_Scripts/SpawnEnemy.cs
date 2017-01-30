@@ -37,6 +37,8 @@ public class SpawnEnemy : MonoBehaviour {
 
 		enemiesToSpawn = 0;
 		gameManager.SetRemainingEnemies (enemySpawnCounter);
+
+        Debug.Log(WaveInfo.ReadFromJSONFile(0));
 	}
 
 	void Update () {
