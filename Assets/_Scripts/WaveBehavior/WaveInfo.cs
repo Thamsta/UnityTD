@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using SimpleJSON;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public static class WaveInfo {
@@ -13,6 +13,8 @@ public static class WaveInfo {
 
         int numberOfSections = Config["data"][GetWaveIndexString(waveIndex)]["Sections"].AsInt;
 
+        Debug.Log(numberOfSections);
+
         //Here the final list is going to be stored
         SortedList<int, KeyValuePair<int, int>[]> generatedJSONList = new SortedList<int, KeyValuePair<int, int>[]>();
 
@@ -22,7 +24,7 @@ public static class WaveInfo {
             Debug.Log("Section" + sec);
 
             //Checking wheter a wave is referenced as section or it is locally declared
-            if (Config["data"][GetWaveIndexString(waveIndex)][GetSectionsIndexString(sec)].Value is string)
+            if (Regex.IsMatch(Config["data"][GetWaveIndexString(waveIndex)][GetSectionsIndexString(sec)].Value, @"^\d+$"))
             {
                 SortedList<int, KeyValuePair<int, int>[]>  tempList = ReadFromJSONFile(Config["data"][GetWaveIndexString(waveIndex)][GetSectionsIndexString(sec)].AsInt);
 
