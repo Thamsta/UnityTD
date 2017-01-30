@@ -17,9 +17,6 @@ public class SpawnEnemy : MonoBehaviour {
 
 	public int lastEnemyCounter;
 	public float lastWaveEndTime;
-
-	Wave wave;
-
 	public int waveCounter;
 
 	private GameManagerBehavior gameManager;
