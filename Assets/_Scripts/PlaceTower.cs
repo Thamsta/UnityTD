@@ -26,7 +26,7 @@ public class PlaceTower : MonoBehaviour {
             {
                 if (CanPlaceTower())
                 {
-                    _tower = (GameObject)Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
+                    _tower = Instantiate(_selectTower.ActiveTower, transform.position, Quaternion.identity);
                     _gameManager.Gold -= _tower.GetComponent<TowerData>().CurrentLevel.cost;
                 }
             }
